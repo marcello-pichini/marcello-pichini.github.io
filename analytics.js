@@ -19,11 +19,18 @@
     if (loaded) return;
     loaded = true;
     gtag('js', new Date());
+    const campaign = {};
+    const query = new URLSearchParams(location.search);
+    Object.entries({utm_source:'campaign_source', utm_medium:'campaign_medium', utm_campaign:'campaign_name', utm_id:'campaign_id', utm_content:'campaign_content', utm_term:'campaign_term'}).forEach(([param, field]) => {
+      const value = query.get(param);
+      if (value) campaign[field] = value.slice(0, 100);
+    });
     gtag('config', id, {
       allow_google_signals: false,
       allow_ad_personalization_signals: false,
       page_location: location.origin + location.pathname,
-      page_referrer: document.referrer ? document.referrer.split(/[?#]/)[0] : ''
+      page_referrer: document.referrer ? document.referrer.split(/[?#]/)[0] : '',
+      ...campaign
     });
     const tag = document.createElement('script');
     tag.async = true;
@@ -76,7 +83,10 @@
     if (!link || consent !== 'granted') return;
     const url = new URL(link.href, location.href);
     const network = {'www.linkedin.com':'linkedin', 'linkedin.com':'linkedin', 'github.com':'github', 'medium.com':'medium'}[url.hostname];
-    if (network) event('professional_link_click', { network, link_url: url.origin + url.pathname });
+    const profile = network === 'linkedin' ? /^\/in\/marcello-pichini\/?$/.test(url.pathname)
+      : network === 'github' ? /^\/marcello-pichini(?:\/|$)/.test(url.pathname)
+      : network === 'medium' ? /^\/@marcello\.pichini(?:\/|$)/.test(url.pathname) : false;
+    if (profile) event('professional_link_click', { network, link_url: url.origin + url.pathname });
   });
   window.addEventListener('scroll', () => {
     if (consent !== 'granted') return;
