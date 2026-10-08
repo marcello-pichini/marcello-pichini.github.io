@@ -1,0 +1,1711 @@
+[
+  {
+    "id": "GPT-1",
+    "c": "OpenAI",
+    "date": "2018-06-11",
+    "url": "https://openai.com/index/language-unsupervised/",
+    "note": "Research milestone; no matching modern benchmark results.",
+    "kind": "release",
+    "t": "2018-06-11T00:00:00.000Z",
+    "scores": [],
+    "gap": null
+  },
+  {
+    "id": "GPT-2",
+    "c": "OpenAI",
+    "date": "2019-02-14",
+    "url": "https://openai.com/index/better-language-models/",
+    "note": "Partial release; full 1.5B model followed November 5, 2019.",
+    "kind": "release",
+    "t": "2019-02-14T00:00:00.000Z",
+    "scores": [],
+    "gap": 248,
+    "previous": "GPT-1"
+  },
+  {
+    "id": "GPT-3",
+    "c": "OpenAI",
+    "date": "2020-06-11",
+    "url": "https://openai.com/index/openai-api/",
+    "note": "Private API beta; paper appeared in May 2020.",
+    "kind": "release",
+    "t": "2020-06-11T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 43.9,
+        "url": "https://arxiv.org/abs/2009.03300",
+        "protocol": "5-shot; MMLU paper, first published September 2020; retrospective evaluation."
+      }
+    ],
+    "gap": 483,
+    "previous": "GPT-2"
+  },
+  {
+    "id": "PaLM 540B",
+    "c": "Google DeepMind",
+    "date": "2022-04-04",
+    "url": "https://research.google/blog/pathways-language-model-palm-scaling-to-540-billion-parameters-for-breakthrough-performance/",
+    "note": "Research announcement; benchmark values from the Llama 2 paper comparison.",
+    "kind": "release",
+    "t": "2022-04-04T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 69.3,
+        "url": "https://arxiv.org/abs/2307.09288",
+        "protocol": "July 2023 Llama 2 paper comparison; PaLM base; MMLU 5-shot; HumanEval 0-shot."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 26.2,
+        "url": "https://arxiv.org/abs/2307.09288",
+        "protocol": "July 2023 Llama 2 paper comparison; PaLM base; MMLU 5-shot; HumanEval 0-shot."
+      }
+    ],
+    "gap": null
+  },
+  {
+    "id": "GPT-3.5 / ChatGPT",
+    "c": "OpenAI",
+    "date": "2022-11-30",
+    "url": "https://openai.com/index/chatgpt/",
+    "note": "ChatGPT research preview; later GPT-4 report supplies benchmark comparison.",
+    "kind": "release",
+    "t": "2022-11-30T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 70,
+        "url": "https://openai.com/index/gpt-4-research/",
+        "protocol": "GPT-4 technical report, March 2023; GPT-3.5 comparison. MMLU 5-shot; HumanEval pass@1."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 48.1,
+        "url": "https://openai.com/index/gpt-4-research/",
+        "protocol": "GPT-4 technical report, March 2023; GPT-3.5 comparison. MMLU 5-shot; HumanEval pass@1."
+      }
+    ],
+    "gap": 902,
+    "previous": "GPT-3"
+  },
+  {
+    "id": "LLaMA 65B",
+    "c": "Meta",
+    "date": "2023-02-24",
+    "url": "https://ai.meta.com/blog/large-language-model-llama-meta-ai/",
+    "note": "Research access.",
+    "kind": "release",
+    "t": "2023-02-24T00:00:00.000Z",
+    "scores": [],
+    "gap": null
+  },
+  {
+    "id": "GPT-4",
+    "c": "OpenAI",
+    "date": "2023-03-14",
+    "url": "https://openai.com/index/gpt-4/",
+    "note": "",
+    "kind": "release",
+    "t": "2023-03-14T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 86.4,
+        "url": "https://openai.com/index/gpt-4-research/",
+        "protocol": "March 2023 report; MMLU 5-shot, HumanEval pass@1."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 67,
+        "url": "https://openai.com/index/gpt-4-research/",
+        "protocol": "March 2023 report; MMLU 5-shot, HumanEval pass@1."
+      }
+    ],
+    "gap": 104,
+    "previous": "GPT-3.5 / ChatGPT"
+  },
+  {
+    "id": "Claude 1",
+    "c": "Anthropic",
+    "date": "2023-03-14",
+    "url": "https://www.anthropic.com/news/introducing-claude",
+    "note": "",
+    "kind": "release",
+    "t": "2023-03-14T00:00:00.000Z",
+    "scores": [],
+    "gap": null
+  },
+  {
+    "id": "Claude 2",
+    "c": "Anthropic",
+    "date": "2023-07-11",
+    "url": "https://www.anthropic.com/news/claude-2",
+    "note": "",
+    "kind": "release",
+    "t": "2023-07-11T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "HumanEval",
+        "value": 71.2,
+        "url": "https://www.anthropic.com/news/claude-2",
+        "protocol": "July 2023; 0-shot pass@1."
+      }
+    ],
+    "gap": 119,
+    "previous": "Claude 1"
+  },
+  {
+    "id": "Llama 2 70B base",
+    "c": "Meta",
+    "date": "2023-07-18",
+    "url": "https://ai.meta.com/blog/llama-2/",
+    "note": "Base model, not the chat variant.",
+    "kind": "release",
+    "t": "2023-07-18T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 68.9,
+        "url": "https://arxiv.org/abs/2307.09288",
+        "protocol": "July 2023; base model; MMLU 5-shot, HumanEval 0-shot."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 29.9,
+        "url": "https://arxiv.org/abs/2307.09288",
+        "protocol": "July 2023; base model; MMLU 5-shot, HumanEval 0-shot."
+      }
+    ],
+    "gap": 144,
+    "previous": "LLaMA 65B"
+  },
+  {
+    "id": "Grok 1",
+    "c": "xAI",
+    "date": "2023-11-03",
+    "url": "https://x.ai/news/grok",
+    "note": "Early beta, restricted access.",
+    "kind": "release",
+    "t": "2023-11-03T00:00:00.000Z",
+    "scores": [],
+    "gap": null
+  },
+  {
+    "id": "GPT-4 Turbo",
+    "c": "OpenAI",
+    "date": "2023-11-06",
+    "url": "https://openai.com/index/new-models-and-developer-products-announced-at-devday/",
+    "note": "Preview.",
+    "kind": "release",
+    "t": "2023-11-06T00:00:00.000Z",
+    "scores": [],
+    "gap": 237,
+    "previous": "GPT-4"
+  },
+  {
+    "id": "Gemini 1.0 Pro",
+    "c": "Google DeepMind",
+    "date": "2023-12-06",
+    "url": "https://blog.google/innovation-and-ai/technology/ai/gemini-collection/",
+    "note": "Bard availability; API followed December 13.",
+    "kind": "release",
+    "t": "2023-12-06T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 71.8,
+        "url": "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/ModelCardClaude3.pdf",
+        "protocol": "March 2024 Claude 3 model-card comparison; MMLU 5-shot; HumanEval pass@1."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 67.7,
+        "url": "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/ModelCardClaude3.pdf",
+        "protocol": "March 2024 Claude 3 model-card comparison; MMLU 5-shot; HumanEval pass@1."
+      }
+    ],
+    "gap": 611,
+    "previous": "PaLM 540B"
+  },
+  {
+    "id": "Gemini 1.0 Ultra",
+    "c": "Google DeepMind",
+    "date": "2024-02-08",
+    "url": "https://blog.google/products/gemini/bard-gemini-advanced-app/",
+    "note": "First consumer availability; announced December 2023.",
+    "kind": "release",
+    "t": "2024-02-08T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 83.7,
+        "url": "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/ModelCardClaude3.pdf",
+        "protocol": "March 2024 comparison; MMLU 5-shot, not the special 90.0 CoT result; HumanEval pass@1."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 74.4,
+        "url": "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/ModelCardClaude3.pdf",
+        "protocol": "March 2024 comparison; MMLU 5-shot, not the special 90.0 CoT result; HumanEval pass@1."
+      }
+    ],
+    "gap": 64,
+    "previous": "Gemini 1.0 Pro"
+  },
+  {
+    "id": "Gemini 1.5 Pro",
+    "c": "Google DeepMind",
+    "date": "2024-02-15",
+    "url": "https://blog.google/innovation-and-ai/products/google-gemini-next-generation-model-february-2024/",
+    "note": "Initial preview; later 1.5 snapshots have different scores.",
+    "kind": "release",
+    "t": "2024-02-15T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 81.9,
+        "url": "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/ModelCardClaude3.pdf",
+        "protocol": "March 2024 comparison; initial preview; MMLU 5-shot; HumanEval pass@1."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 71.9,
+        "url": "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/ModelCardClaude3.pdf",
+        "protocol": "March 2024 comparison; initial preview; MMLU 5-shot; HumanEval pass@1."
+      }
+    ],
+    "gap": 7,
+    "previous": "Gemini 1.0 Ultra"
+  },
+  {
+    "id": "Claude 3 Opus",
+    "c": "Anthropic",
+    "date": "2024-03-04",
+    "url": "https://www.anthropic.com/news/claude-3-family",
+    "note": "",
+    "kind": "release",
+    "t": "2024-03-04T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 86.8,
+        "url": "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/ModelCardClaude3.pdf",
+        "protocol": "March 2024; MMLU 5-shot (not the 88.2 CoT result); HumanEval 0-shot; GPQA 0-shot CoT."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 84.9,
+        "url": "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/ModelCardClaude3.pdf",
+        "protocol": "March 2024; MMLU 5-shot (not the 88.2 CoT result); HumanEval 0-shot; GPQA 0-shot CoT."
+      },
+      {
+        "metric": "GPQA Diamond",
+        "value": 50.4,
+        "url": "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/ModelCardClaude3.pdf",
+        "protocol": "March 2024; MMLU 5-shot (not the 88.2 CoT result); HumanEval 0-shot; GPQA 0-shot CoT."
+      },
+      {
+        "metric": "AIME 2024",
+        "value": 7.9,
+        "url": "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf",
+        "protocol": "October 2024 model-card comparison; pass@1."
+      }
+    ],
+    "gap": 237,
+    "previous": "Claude 2"
+  },
+  {
+    "id": "Grok 1.5",
+    "c": "xAI",
+    "date": "2024-03-28",
+    "url": "https://x.ai/news/grok-1.5",
+    "note": "Preview announcement.",
+    "kind": "release",
+    "t": "2024-03-28T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 81.3,
+        "url": "https://x.ai/news/grok-2",
+        "protocol": "August 2024 Grok 2 comparison; HumanEval pass@1; Grok 1.5 prompt details not fully specified."
+      },
+      {
+        "metric": "MMLU-Pro",
+        "value": 51,
+        "url": "https://x.ai/news/grok-2",
+        "protocol": "August 2024 Grok 2 comparison; HumanEval pass@1; Grok 1.5 prompt details not fully specified."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 74.1,
+        "url": "https://x.ai/news/grok-2",
+        "protocol": "August 2024 Grok 2 comparison; HumanEval pass@1; Grok 1.5 prompt details not fully specified."
+      }
+    ],
+    "gap": 146,
+    "previous": "Grok 1"
+  },
+  {
+    "id": "Llama 3 70B Instruct",
+    "c": "Meta",
+    "date": "2024-04-18",
+    "url": "https://ai.meta.com/blog/meta-llama-3/",
+    "note": "",
+    "kind": "release",
+    "t": "2024-04-18T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 82,
+        "url": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
+        "protocol": "July 2024 Meta comparison; MMLU 5-shot; HumanEval 0-shot."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 81.7,
+        "url": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
+        "protocol": "July 2024 Meta comparison; MMLU 5-shot; HumanEval 0-shot."
+      }
+    ],
+    "gap": 275,
+    "previous": "Llama 2 70B base"
+  },
+  {
+    "id": "GPT-4o",
+    "c": "OpenAI",
+    "date": "2024-05-13",
+    "url": "https://openai.com/index/hello-gpt-4o/",
+    "note": "",
+    "kind": "release",
+    "t": "2024-05-13T00:00:00.000Z",
+    "scores": [],
+    "gap": 189,
+    "previous": "GPT-4 Turbo"
+  },
+  {
+    "id": "Claude 3.5 Sonnet",
+    "c": "Anthropic",
+    "date": "2024-06-20",
+    "url": "https://www.anthropic.com/news/claude-3-5-sonnet",
+    "note": "June 20 date from the dated model-card addendum.",
+    "kind": "release",
+    "t": "2024-06-20T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 88.7,
+        "url": "https://www-cdn.anthropic.com/fed9cc193a14b84131812372d8d5857f8f304c52/Model%2ACard%2AClaude%2A3%2AAddendum.pdf",
+        "protocol": "June 2024; MMLU 5-shot; MMLU-Pro and GPQA 0-shot CoT; HumanEval 0-shot."
+      },
+      {
+        "metric": "MMLU-Pro",
+        "value": 75.1,
+        "url": "https://www-cdn.anthropic.com/fed9cc193a14b84131812372d8d5857f8f304c52/Model%2ACard%2AClaude%2A3%2AAddendum.pdf",
+        "protocol": "June 2024; MMLU 5-shot; MMLU-Pro and GPQA 0-shot CoT; HumanEval 0-shot."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 92,
+        "url": "https://www-cdn.anthropic.com/fed9cc193a14b84131812372d8d5857f8f304c52/Model%2ACard%2AClaude%2A3%2AAddendum.pdf",
+        "protocol": "June 2024; MMLU 5-shot; MMLU-Pro and GPQA 0-shot CoT; HumanEval 0-shot."
+      },
+      {
+        "metric": "GPQA Diamond",
+        "value": 59.4,
+        "url": "https://www-cdn.anthropic.com/fed9cc193a14b84131812372d8d5857f8f304c52/Model%2ACard%2AClaude%2A3%2AAddendum.pdf",
+        "protocol": "June 2024; MMLU 5-shot; MMLU-Pro and GPQA 0-shot CoT; HumanEval 0-shot."
+      },
+      {
+        "metric": "AIME 2024",
+        "value": 9.6,
+        "url": "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf",
+        "protocol": "October 2024 model-card comparison; pass@1."
+      }
+    ],
+    "gap": 108,
+    "previous": "Claude 3 Opus"
+  },
+  {
+    "id": "Llama 3.1 405B Instruct",
+    "c": "Meta",
+    "date": "2024-07-23",
+    "url": "https://ai.meta.com/blog/meta-llama-3-1/",
+    "note": "",
+    "kind": "release",
+    "t": "2024-07-23T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 87.3,
+        "url": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
+        "protocol": "July 2024; MMLU 5-shot (not 88.6 zero-shot CoT); HumanEval 0-shot."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 89,
+        "url": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
+        "protocol": "July 2024; MMLU 5-shot (not 88.6 zero-shot CoT); HumanEval 0-shot."
+      }
+    ],
+    "gap": 96,
+    "previous": "Llama 3 70B Instruct"
+  },
+  {
+    "id": "Grok 2",
+    "c": "xAI",
+    "date": "2024-08-13",
+    "url": "https://x.ai/news/grok-2",
+    "note": "Beta.",
+    "kind": "release",
+    "t": "2024-08-13T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 87.5,
+        "url": "https://x.ai/news/grok-2",
+        "protocol": "August 2024; MMLU and MMLU-Pro 0-shot CoT; HumanEval pass@1. Generic GPQA excluded."
+      },
+      {
+        "metric": "MMLU-Pro",
+        "value": 75.5,
+        "url": "https://x.ai/news/grok-2",
+        "protocol": "August 2024; MMLU and MMLU-Pro 0-shot CoT; HumanEval pass@1. Generic GPQA excluded."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 88.4,
+        "url": "https://x.ai/news/grok-2",
+        "protocol": "August 2024; MMLU and MMLU-Pro 0-shot CoT; HumanEval pass@1. Generic GPQA excluded."
+      }
+    ],
+    "gap": 138,
+    "previous": "Grok 1.5"
+  },
+  {
+    "id": "DeepSeek V2.5",
+    "c": "DeepSeek",
+    "date": "2024-09-05",
+    "url": "https://api-docs.deepseek.com/updates/",
+    "note": "September snapshot; comparison reported in V3 model card.",
+    "kind": "release",
+    "t": "2024-09-05T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 80.6,
+        "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+        "protocol": "December 2024 V3 comparison; V2.5-0905 Chat; 8K output limit; sampled tests estimate pass@1; SWE agent setup."
+      },
+      {
+        "metric": "MMLU-Pro",
+        "value": 66.2,
+        "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+        "protocol": "December 2024 V3 comparison; V2.5-0905 Chat; 8K output limit; sampled tests estimate pass@1; SWE agent setup."
+      },
+      {
+        "metric": "GPQA Diamond",
+        "value": 41.3,
+        "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+        "protocol": "December 2024 V3 comparison; V2.5-0905 Chat; 8K output limit; sampled tests estimate pass@1; SWE agent setup."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 22.6,
+        "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+        "protocol": "December 2024 V3 comparison; V2.5-0905 Chat; 8K output limit; sampled tests estimate pass@1; SWE agent setup."
+      },
+      {
+        "metric": "AIME 2024",
+        "value": 16.7,
+        "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+        "protocol": "December 2024 V3 comparison; V2.5-0905 Chat; 8K output limit; sampled tests estimate pass@1; SWE agent setup."
+      }
+    ],
+    "gap": null
+  },
+  {
+    "id": "o1-preview",
+    "c": "OpenAI",
+    "date": "2024-09-12",
+    "url": "https://openai.com/index/learning-to-reason-with-llms/",
+    "note": "Preview; full o1 scores are not assigned to this model.",
+    "kind": "release",
+    "t": "2024-09-12T00:00:00.000Z",
+    "scores": [],
+    "gap": 122,
+    "previous": "GPT-4o"
+  },
+  {
+    "id": "Claude 3.5 Sonnet · Oct",
+    "c": "Anthropic",
+    "date": "2024-10-22",
+    "url": "https://www.anthropic.com/news/3-5-models-and-computer-use",
+    "note": "Updated model release.",
+    "kind": "release",
+    "t": "2024-10-22T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 88.7,
+        "url": "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf",
+        "protocol": "October 2024; MMLU 5-shot; MMLU-Pro and GPQA CoT; HumanEval 0-shot; AIME pass@1."
+      },
+      {
+        "metric": "MMLU-Pro",
+        "value": 78,
+        "url": "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf",
+        "protocol": "October 2024; MMLU 5-shot; MMLU-Pro and GPQA CoT; HumanEval 0-shot; AIME pass@1."
+      },
+      {
+        "metric": "HumanEval",
+        "value": 93.7,
+        "url": "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf",
+        "protocol": "October 2024; MMLU 5-shot; MMLU-Pro and GPQA CoT; HumanEval 0-shot; AIME pass@1."
+      },
+      {
+        "metric": "GPQA Diamond",
+        "value": 65,
+        "url": "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf",
+        "protocol": "October 2024; MMLU 5-shot; MMLU-Pro and GPQA CoT; HumanEval 0-shot; AIME pass@1."
+      },
+      {
+        "metric": "AIME 2024",
+        "value": 16,
+        "url": "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf",
+        "protocol": "October 2024; MMLU 5-shot; MMLU-Pro and GPQA CoT; HumanEval 0-shot; AIME pass@1."
+      }
+    ],
+    "gap": 124,
+    "previous": "Claude 3.5 Sonnet"
+  },
+  {
+    "id": "GPT-4o · Nov snapshot",
+    "c": "OpenAI",
+    "date": "2024-11-20",
+    "url": "https://openai.com/index/gpt-4-1/",
+    "note": "Evaluated API snapshot; not a new family release.",
+    "kind": "snapshot",
+    "t": "2024-11-20T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 85.7,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025 comparison; 2024-11-20 snapshot. MMLU 5-shot. GPQA answer extraction affects results. SWE uses 477/500 tasks."
+      },
+      {
+        "metric": "GPQA Diamond",
+        "value": 46,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025 comparison; 2024-11-20 snapshot. MMLU 5-shot. GPQA answer extraction affects results. SWE uses 477/500 tasks."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 33.2,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025 comparison; 2024-11-20 snapshot. MMLU 5-shot. GPQA answer extraction affects results. SWE uses 477/500 tasks."
+      },
+      {
+        "metric": "AIME 2024",
+        "value": 13.1,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025 comparison; 2024-11-20 snapshot. MMLU 5-shot. GPQA answer extraction affects results. SWE uses 477/500 tasks."
+      }
+    ]
+  },
+  {
+    "id": "o1",
+    "c": "OpenAI",
+    "date": "2024-12-05",
+    "url": "https://openai.com/index/introducing-chatgpt-pro/",
+    "note": "",
+    "kind": "release",
+    "t": "2024-12-05T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 91.8,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025 comparison; high reasoning. MMLU 5-shot. SWE uses 477/500 tasks and an agent harness."
+      },
+      {
+        "metric": "GPQA Diamond",
+        "value": 75.7,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025 comparison; high reasoning. MMLU 5-shot. SWE uses 477/500 tasks and an agent harness."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 41,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025 comparison; high reasoning. MMLU 5-shot. SWE uses 477/500 tasks and an agent harness."
+      },
+      {
+        "metric": "AIME 2024",
+        "value": 74.3,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025 comparison; high reasoning. MMLU 5-shot. SWE uses 477/500 tasks and an agent harness."
+      }
+    ],
+    "gap": 84,
+    "previous": "o1-preview"
+  },
+  {
+    "id": "Gemini 2.0 Flash Experimental",
+    "c": "Google DeepMind",
+    "date": "2024-12-11",
+    "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/google-gemini-ai-update-december-2024/",
+    "note": "Experimental preview.",
+    "kind": "release",
+    "t": "2024-12-11T00:00:00.000Z",
+    "scores": [],
+    "gap": 300,
+    "previous": "Gemini 1.5 Pro"
+  },
+  {
+    "id": "DeepSeek V3",
+    "c": "DeepSeek",
+    "date": "2024-12-26",
+    "url": "https://api-docs.deepseek.com/updates/",
+    "note": "",
+    "kind": "release",
+    "t": "2024-12-26T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 88.5,
+        "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+        "protocol": "December 2024; Chat version; 8K output limit; sampled tests estimate pass@1; SWE agent setup. HumanEval-Mul excluded."
+      },
+      {
+        "metric": "MMLU-Pro",
+        "value": 75.9,
+        "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+        "protocol": "December 2024; Chat version; 8K output limit; sampled tests estimate pass@1; SWE agent setup. HumanEval-Mul excluded."
+      },
+      {
+        "metric": "GPQA Diamond",
+        "value": 59.1,
+        "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+        "protocol": "December 2024; Chat version; 8K output limit; sampled tests estimate pass@1; SWE agent setup. HumanEval-Mul excluded."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 42,
+        "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+        "protocol": "December 2024; Chat version; 8K output limit; sampled tests estimate pass@1; SWE agent setup. HumanEval-Mul excluded."
+      },
+      {
+        "metric": "AIME 2024",
+        "value": 39.2,
+        "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+        "protocol": "December 2024; Chat version; 8K output limit; sampled tests estimate pass@1; SWE agent setup. HumanEval-Mul excluded."
+      }
+    ],
+    "gap": 112,
+    "previous": "DeepSeek V2.5"
+  },
+  {
+    "id": "DeepSeek R1",
+    "c": "DeepSeek",
+    "date": "2025-01-20",
+    "url": "https://api-docs.deepseek.com/updates/",
+    "note": "",
+    "kind": "release",
+    "t": "2025-01-20T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 90.8,
+        "url": "https://github.com/deepseek-ai/DeepSeek-R1",
+        "protocol": "January 2025; temperature 0.6, top-p 0.95; 64 responses estimate pass@1 on sampled tests."
+      },
+      {
+        "metric": "MMLU-Pro",
+        "value": 84,
+        "url": "https://github.com/deepseek-ai/DeepSeek-R1",
+        "protocol": "January 2025; temperature 0.6, top-p 0.95; 64 responses estimate pass@1 on sampled tests."
+      },
+      {
+        "metric": "GPQA Diamond",
+        "value": 71.5,
+        "url": "https://github.com/deepseek-ai/DeepSeek-R1",
+        "protocol": "January 2025; temperature 0.6, top-p 0.95; 64 responses estimate pass@1 on sampled tests."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 49.2,
+        "url": "https://github.com/deepseek-ai/DeepSeek-R1",
+        "protocol": "January 2025; temperature 0.6, top-p 0.95; 64 responses estimate pass@1 on sampled tests."
+      },
+      {
+        "metric": "AIME 2024",
+        "value": 79.8,
+        "url": "https://github.com/deepseek-ai/DeepSeek-R1",
+        "protocol": "January 2025; temperature 0.6, top-p 0.95; 64 responses estimate pass@1 on sampled tests."
+      },
+      {
+        "metric": "AIME 2025",
+        "value": 70,
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+        "protocol": "May 2025 retrospective evaluation; no tools; sampled pass@1. Text-only HLE excluded."
+      }
+    ],
+    "gap": 25,
+    "previous": "DeepSeek V3"
+  },
+  {
+    "id": "Grok 3",
+    "c": "xAI",
+    "date": "2025-02-19",
+    "url": "https://x.ai/news/grok-3",
+    "note": "Beta.",
+    "kind": "release",
+    "t": "2025-02-19T00:00:00.000Z",
+    "scores": [],
+    "gap": 190,
+    "previous": "Grok 2"
+  },
+  {
+    "id": "Claude 3.7 Sonnet",
+    "c": "Anthropic",
+    "date": "2025-02-24",
+    "url": "https://www.anthropic.com/news/claude-3-7-sonnet",
+    "note": "",
+    "kind": "release",
+    "t": "2025-02-24T00:00:00.000Z",
+    "scores": [],
+    "gap": 125,
+    "previous": "Claude 3.5 Sonnet · Oct"
+  },
+  {
+    "id": "GPT-4.5",
+    "c": "OpenAI",
+    "date": "2025-02-27",
+    "url": "https://openai.com/index/introducing-gpt-4-5/",
+    "note": "Research preview.",
+    "kind": "release",
+    "t": "2025-02-27T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 90.8,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025 comparison; MMLU 5-shot. SWE uses 477/500 tasks and an agent harness."
+      },
+      {
+        "metric": "GPQA Diamond",
+        "value": 69.5,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025 comparison; MMLU 5-shot. SWE uses 477/500 tasks and an agent harness."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 38,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025 comparison; MMLU 5-shot. SWE uses 477/500 tasks and an agent harness."
+      },
+      {
+        "metric": "AIME 2024",
+        "value": 36.7,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025 comparison; MMLU 5-shot. SWE uses 477/500 tasks and an agent harness."
+      }
+    ],
+    "gap": 84,
+    "previous": "o1"
+  },
+  {
+    "id": "Gemini 2.5 Pro Experimental",
+    "c": "Google DeepMind",
+    "date": "2025-03-25",
+    "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-model-thinking-updates-march-2025/",
+    "note": "Initial experimental release.",
+    "kind": "release",
+    "t": "2025-03-25T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "HLE",
+        "value": 18.8,
+        "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-model-thinking-updates-march-2025/",
+        "protocol": "March 2025 launch; no tools."
+      }
+    ],
+    "gap": 104,
+    "previous": "Gemini 2.0 Flash Experimental"
+  },
+  {
+    "id": "Llama 4 Maverick Instruct",
+    "c": "Meta",
+    "date": "2025-04-05",
+    "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+    "note": "",
+    "kind": "release",
+    "t": "2025-04-05T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU-Pro",
+        "value": 80.5,
+        "url": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+        "protocol": "April 2025 Meta model card; instruction-tuned version, zero-shot."
+      },
+      {
+        "metric": "GPQA Diamond",
+        "value": 69.8,
+        "url": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+        "protocol": "April 2025 Meta model card; instruction-tuned version, zero-shot."
+      }
+    ],
+    "gap": 256,
+    "previous": "Llama 3.1 405B Instruct"
+  },
+  {
+    "id": "GPT-4.1",
+    "c": "OpenAI",
+    "date": "2025-04-14",
+    "url": "https://openai.com/index/gpt-4-1/",
+    "note": "",
+    "kind": "release",
+    "t": "2025-04-14T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU",
+        "value": 90.2,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025; MMLU 5-shot. SWE uses 477/500 tasks: 52.1% if all 500 are the denominator."
+      },
+      {
+        "metric": "GPQA Diamond",
+        "value": 66.3,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025; MMLU 5-shot. SWE uses 477/500 tasks: 52.1% if all 500 are the denominator."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 54.6,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025; MMLU 5-shot. SWE uses 477/500 tasks: 52.1% if all 500 are the denominator."
+      },
+      {
+        "metric": "AIME 2024",
+        "value": 48.1,
+        "url": "https://openai.com/index/gpt-4-1/",
+        "protocol": "April 2025; MMLU 5-shot. SWE uses 477/500 tasks: 52.1% if all 500 are the denominator."
+      },
+      {
+        "metric": "AIME 2025",
+        "value": 46.4,
+        "url": "https://openai.com/index/introducing-gpt-5-for-developers/",
+        "protocol": "August 2025 comparison; no tools; updated HLE dataset version."
+      },
+      {
+        "metric": "HLE",
+        "value": 5.4,
+        "url": "https://openai.com/index/introducing-gpt-5-for-developers/",
+        "protocol": "August 2025 comparison; no tools; updated HLE dataset version."
+      }
+    ],
+    "gap": 46,
+    "previous": "GPT-4.5"
+  },
+  {
+    "id": "o3",
+    "c": "OpenAI",
+    "date": "2025-04-16",
+    "url": "https://developers.openai.com/api/docs/changelog",
+    "note": "",
+    "kind": "release",
+    "t": "2025-04-16T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 83.3,
+        "url": "https://openai.com/index/introducing-gpt-5-for-developers/",
+        "protocol": "August 2025 comparison; high reasoning; no tools for academic tests; SWE agent, 477 tasks."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 69.1,
+        "url": "https://openai.com/index/introducing-gpt-5-for-developers/",
+        "protocol": "August 2025 comparison; high reasoning; no tools for academic tests; SWE agent, 477 tasks."
+      },
+      {
+        "metric": "AIME 2025",
+        "value": 88.9,
+        "url": "https://openai.com/index/introducing-gpt-5-for-developers/",
+        "protocol": "August 2025 comparison; high reasoning; no tools for academic tests; SWE agent, 477 tasks."
+      },
+      {
+        "metric": "HLE",
+        "value": 20.2,
+        "url": "https://openai.com/index/introducing-gpt-5-for-developers/",
+        "protocol": "August 2025 comparison; high reasoning; no tools for academic tests; SWE agent, 477 tasks."
+      }
+    ],
+    "gap": 2,
+    "previous": "GPT-4.1"
+  },
+  {
+    "id": "Claude Opus 4",
+    "c": "Anthropic",
+    "date": "2025-05-22",
+    "url": "https://www.anthropic.com/news/claude-4",
+    "note": "",
+    "kind": "release",
+    "t": "2025-05-22T00:00:00.000Z",
+    "scores": [],
+    "gap": 87,
+    "previous": "Claude 3.7 Sonnet"
+  },
+  {
+    "id": "DeepSeek R1-0528",
+    "c": "DeepSeek",
+    "date": "2025-05-28",
+    "url": "https://api-docs.deepseek.com/updates/",
+    "note": "",
+    "kind": "release",
+    "t": "2025-05-28T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "MMLU-Pro",
+        "value": 85,
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+        "protocol": "May 2025; 64K generation; temperature 0.6, top-p 0.95; 16 responses estimate pass@1; SWE Agentless. Text-only HLE excluded."
+      },
+      {
+        "metric": "GPQA Diamond",
+        "value": 81,
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+        "protocol": "May 2025; 64K generation; temperature 0.6, top-p 0.95; 16 responses estimate pass@1; SWE Agentless. Text-only HLE excluded."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 57.6,
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+        "protocol": "May 2025; 64K generation; temperature 0.6, top-p 0.95; 16 responses estimate pass@1; SWE Agentless. Text-only HLE excluded."
+      },
+      {
+        "metric": "AIME 2024",
+        "value": 91.4,
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+        "protocol": "May 2025; 64K generation; temperature 0.6, top-p 0.95; 16 responses estimate pass@1; SWE Agentless. Text-only HLE excluded."
+      },
+      {
+        "metric": "AIME 2025",
+        "value": 87.5,
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+        "protocol": "May 2025; 64K generation; temperature 0.6, top-p 0.95; 16 responses estimate pass@1; SWE Agentless. Text-only HLE excluded."
+      }
+    ],
+    "gap": 128,
+    "previous": "DeepSeek R1"
+  },
+  {
+    "id": "Grok 4",
+    "c": "xAI",
+    "date": "2025-07-09",
+    "url": "https://x.ai/news/grok-4",
+    "note": "",
+    "kind": "release",
+    "t": "2025-07-09T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 87.5,
+        "url": "https://x.ai/news/grok-4-fast",
+        "protocol": "September 2025 comparison; pass@1; AIME and HLE no tools."
+      },
+      {
+        "metric": "AIME 2025",
+        "value": 91.7,
+        "url": "https://x.ai/news/grok-4-fast",
+        "protocol": "September 2025 comparison; pass@1; AIME and HLE no tools."
+      },
+      {
+        "metric": "HLE",
+        "value": 25.4,
+        "url": "https://x.ai/news/grok-4-fast",
+        "protocol": "September 2025 comparison; pass@1; AIME and HLE no tools."
+      }
+    ],
+    "gap": 140,
+    "previous": "Grok 3"
+  },
+  {
+    "id": "GPT-5",
+    "c": "OpenAI",
+    "date": "2025-08-07",
+    "url": "https://openai.com/index/introducing-gpt-5/",
+    "note": "",
+    "kind": "release",
+    "t": "2025-08-07T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 85.7,
+        "url": "https://openai.com/index/introducing-gpt-5-for-developers/",
+        "protocol": "August 2025; high reasoning; no tools for academic tests; SWE agent, 477 tasks."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 74.9,
+        "url": "https://openai.com/index/introducing-gpt-5-for-developers/",
+        "protocol": "August 2025; high reasoning; no tools for academic tests; SWE agent, 477 tasks."
+      },
+      {
+        "metric": "AIME 2025",
+        "value": 94.6,
+        "url": "https://openai.com/index/introducing-gpt-5-for-developers/",
+        "protocol": "August 2025; high reasoning; no tools for academic tests; SWE agent, 477 tasks."
+      },
+      {
+        "metric": "HLE",
+        "value": 24.8,
+        "url": "https://openai.com/index/introducing-gpt-5-for-developers/",
+        "protocol": "August 2025; high reasoning; no tools for academic tests; SWE agent, 477 tasks."
+      }
+    ],
+    "gap": 113,
+    "previous": "o3"
+  },
+  {
+    "id": "Grok 4 Fast",
+    "c": "xAI",
+    "date": "2025-09-19",
+    "url": "https://x.ai/news/grok-4-fast",
+    "note": "",
+    "kind": "release",
+    "t": "2025-09-19T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 85.7,
+        "url": "https://x.ai/news/grok-4-fast",
+        "protocol": "September 2025; pass@1; AIME and HLE no tools."
+      },
+      {
+        "metric": "AIME 2025",
+        "value": 92,
+        "url": "https://x.ai/news/grok-4-fast",
+        "protocol": "September 2025; pass@1; AIME and HLE no tools."
+      },
+      {
+        "metric": "HLE",
+        "value": 20,
+        "url": "https://x.ai/news/grok-4-fast",
+        "protocol": "September 2025; pass@1; AIME and HLE no tools."
+      }
+    ],
+    "gap": 72,
+    "previous": "Grok 4"
+  },
+  {
+    "id": "Claude Sonnet 4.5",
+    "c": "Anthropic",
+    "date": "2025-09-29",
+    "url": "https://www.anthropic.com/news/claude-sonnet-4-5",
+    "note": "",
+    "kind": "release",
+    "t": "2025-09-29T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 83.4,
+        "url": "https://www-cdn.anthropic.com/bbd8ef16d70b7a1665f14f306ee88b53f686aa75/Claude%20Sonnet%204.6%20System%20Card.pdf",
+        "protocol": "February 2026 Sonnet 4.6 system-card comparison; extended thinking; HLE no tools; SWE agent setup."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 77.2,
+        "url": "https://www-cdn.anthropic.com/bbd8ef16d70b7a1665f14f306ee88b53f686aa75/Claude%20Sonnet%204.6%20System%20Card.pdf",
+        "protocol": "February 2026 Sonnet 4.6 system-card comparison; extended thinking; HLE no tools; SWE agent setup."
+      },
+      {
+        "metric": "HLE",
+        "value": 17.7,
+        "url": "https://www-cdn.anthropic.com/bbd8ef16d70b7a1665f14f306ee88b53f686aa75/Claude%20Sonnet%204.6%20System%20Card.pdf",
+        "protocol": "February 2026 Sonnet 4.6 system-card comparison; extended thinking; HLE no tools; SWE agent setup."
+      }
+    ],
+    "gap": 130,
+    "previous": "Claude Opus 4"
+  },
+  {
+    "id": "GPT-5.1 Thinking",
+    "c": "OpenAI",
+    "date": "2025-11-12",
+    "url": "https://openai.com/index/gpt-5-system-card-addendum-gpt-5-1/",
+    "note": "",
+    "kind": "release",
+    "t": "2025-11-12T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 88.1,
+        "url": "https://openai.com/index/introducing-gpt-5-2/",
+        "protocol": "December 2025 comparison; high reasoning; no tools for academic tests; software agent setup."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 76.3,
+        "url": "https://openai.com/index/introducing-gpt-5-2/",
+        "protocol": "December 2025 comparison; high reasoning; no tools for academic tests; software agent setup."
+      },
+      {
+        "metric": "AIME 2025",
+        "value": 94,
+        "url": "https://openai.com/index/introducing-gpt-5-2/",
+        "protocol": "December 2025 comparison; high reasoning; no tools for academic tests; software agent setup."
+      },
+      {
+        "metric": "HLE",
+        "value": 25.7,
+        "url": "https://openai.com/index/introducing-gpt-5-2/",
+        "protocol": "December 2025 comparison; high reasoning; no tools for academic tests; software agent setup."
+      }
+    ],
+    "gap": 97,
+    "previous": "GPT-5"
+  },
+  {
+    "id": "Grok 4.1",
+    "c": "xAI",
+    "date": "2025-11-17",
+    "url": "https://x.ai/news/grok-4-1",
+    "note": "",
+    "kind": "release",
+    "t": "2025-11-17T00:00:00.000Z",
+    "scores": [],
+    "gap": 59,
+    "previous": "Grok 4 Fast"
+  },
+  {
+    "id": "Gemini 3 Pro",
+    "c": "Google DeepMind",
+    "date": "2025-11-18",
+    "url": "https://blog.google/products-and-platforms/products/gemini/gemini-3/",
+    "note": "",
+    "kind": "release",
+    "t": "2025-11-18T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 91.9,
+        "url": "https://deepmind.google/models/model-cards/gemini-3-1-pro/",
+        "protocol": "February 2026 Google model-card comparison; thinking high; academic tests without tools; SWE agent harness."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 76.2,
+        "url": "https://deepmind.google/models/model-cards/gemini-3-1-pro/",
+        "protocol": "February 2026 Google model-card comparison; thinking high; academic tests without tools; SWE agent harness."
+      },
+      {
+        "metric": "HLE",
+        "value": 37.5,
+        "url": "https://deepmind.google/models/model-cards/gemini-3-1-pro/",
+        "protocol": "February 2026 Google model-card comparison; thinking high; academic tests without tools; SWE agent harness."
+      }
+    ],
+    "gap": 238,
+    "previous": "Gemini 2.5 Pro Experimental"
+  },
+  {
+    "id": "Claude Opus 4.5",
+    "c": "Anthropic",
+    "date": "2025-11-24",
+    "url": "https://www.anthropic.com/news/claude-opus-4-5",
+    "note": "",
+    "kind": "release",
+    "t": "2025-11-24T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 87,
+        "url": "https://www-cdn.anthropic.com/bbd8ef16d70b7a1665f14f306ee88b53f686aa75/Claude%20Sonnet%204.6%20System%20Card.pdf",
+        "protocol": "February 2026 comparison; extended thinking; HLE no tools; SWE agent setup."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 80.9,
+        "url": "https://www-cdn.anthropic.com/bbd8ef16d70b7a1665f14f306ee88b53f686aa75/Claude%20Sonnet%204.6%20System%20Card.pdf",
+        "protocol": "February 2026 comparison; extended thinking; HLE no tools; SWE agent setup."
+      },
+      {
+        "metric": "HLE",
+        "value": 30.8,
+        "url": "https://www-cdn.anthropic.com/bbd8ef16d70b7a1665f14f306ee88b53f686aa75/Claude%20Sonnet%204.6%20System%20Card.pdf",
+        "protocol": "February 2026 comparison; extended thinking; HLE no tools; SWE agent setup."
+      }
+    ],
+    "gap": 56,
+    "previous": "Claude Sonnet 4.5"
+  },
+  {
+    "id": "DeepSeek V3.2",
+    "c": "DeepSeek",
+    "date": "2025-12-01",
+    "url": "https://api-docs.deepseek.com/updates/",
+    "note": "",
+    "kind": "release",
+    "t": "2025-12-01T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 82.4,
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2",
+        "protocol": "December 2025 official model card; reported evaluation results."
+      },
+      {
+        "metric": "MMLU-Pro",
+        "value": 85,
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2",
+        "protocol": "December 2025 official model card; reported evaluation results."
+      }
+    ],
+    "gap": 187,
+    "previous": "DeepSeek R1-0528"
+  },
+  {
+    "id": "GPT-5.2 Thinking",
+    "c": "OpenAI",
+    "date": "2025-12-11",
+    "url": "https://openai.com/index/introducing-gpt-5-2/",
+    "note": "",
+    "kind": "release",
+    "t": "2025-12-11T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 92.4,
+        "url": "https://openai.com/index/introducing-gpt-5-2/",
+        "protocol": "December 2025; xhigh reasoning; no tools for academic tests; software agent setup."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 80,
+        "url": "https://openai.com/index/introducing-gpt-5-2/",
+        "protocol": "December 2025; xhigh reasoning; no tools for academic tests; software agent setup."
+      },
+      {
+        "metric": "AIME 2025",
+        "value": 100,
+        "url": "https://openai.com/index/introducing-gpt-5-2/",
+        "protocol": "December 2025; xhigh reasoning; no tools for academic tests; software agent setup."
+      },
+      {
+        "metric": "HLE",
+        "value": 34.5,
+        "url": "https://openai.com/index/introducing-gpt-5-2/",
+        "protocol": "December 2025; xhigh reasoning; no tools for academic tests; software agent setup."
+      }
+    ],
+    "gap": 29,
+    "previous": "GPT-5.1 Thinking"
+  },
+  {
+    "id": "Gemini 3 Flash",
+    "c": "Google DeepMind",
+    "date": "2025-12-17",
+    "url": "https://blog.google/products-and-platforms/products/gemini/gemini-3-flash/",
+    "note": "",
+    "kind": "release",
+    "t": "2025-12-17T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 90.4,
+        "url": "https://blog.google/products-and-platforms/products/gemini/gemini-3-flash/",
+        "protocol": "December 2025 launch; HLE no tools; SWE agent evaluation."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 78,
+        "url": "https://blog.google/products-and-platforms/products/gemini/gemini-3-flash/",
+        "protocol": "December 2025 launch; HLE no tools; SWE agent evaluation."
+      },
+      {
+        "metric": "HLE",
+        "value": 33.7,
+        "url": "https://blog.google/products-and-platforms/products/gemini/gemini-3-flash/",
+        "protocol": "December 2025 launch; HLE no tools; SWE agent evaluation."
+      }
+    ],
+    "gap": 29,
+    "previous": "Gemini 3 Pro"
+  },
+  {
+    "id": "Claude Opus 4.6",
+    "c": "Anthropic",
+    "date": "2026-02-05",
+    "url": "https://www.anthropic.com/news/claude-opus-4-6",
+    "note": "",
+    "kind": "release",
+    "t": "2026-02-05T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 91.3,
+        "url": "https://www-cdn.anthropic.com/bbd8ef16d70b7a1665f14f306ee88b53f686aa75/Claude%20Sonnet%204.6%20System%20Card.pdf",
+        "protocol": "February 2026 comparison; maximum reasoning; HLE no tools; SWE agent setup."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 80.8,
+        "url": "https://www-cdn.anthropic.com/bbd8ef16d70b7a1665f14f306ee88b53f686aa75/Claude%20Sonnet%204.6%20System%20Card.pdf",
+        "protocol": "February 2026 comparison; maximum reasoning; HLE no tools; SWE agent setup."
+      },
+      {
+        "metric": "HLE",
+        "value": 40,
+        "url": "https://www-cdn.anthropic.com/bbd8ef16d70b7a1665f14f306ee88b53f686aa75/Claude%20Sonnet%204.6%20System%20Card.pdf",
+        "protocol": "February 2026 comparison; maximum reasoning; HLE no tools; SWE agent setup."
+      }
+    ],
+    "gap": 73,
+    "previous": "Claude Opus 4.5"
+  },
+  {
+    "id": "Gemini 3.1 Pro",
+    "c": "Google DeepMind",
+    "date": "2026-02-19",
+    "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/",
+    "note": "Preview.",
+    "kind": "release",
+    "t": "2026-02-19T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 94.3,
+        "url": "https://deepmind.google/models/model-cards/gemini-3-1-pro/",
+        "protocol": "February 2026; thinking high; academic tests without tools; SWE agent harness."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 80.6,
+        "url": "https://deepmind.google/models/model-cards/gemini-3-1-pro/",
+        "protocol": "February 2026; thinking high; academic tests without tools; SWE agent harness."
+      },
+      {
+        "metric": "HLE",
+        "value": 44.4,
+        "url": "https://deepmind.google/models/model-cards/gemini-3-1-pro/",
+        "protocol": "February 2026; thinking high; academic tests without tools; SWE agent harness."
+      }
+    ],
+    "gap": 64,
+    "previous": "Gemini 3 Flash"
+  },
+  {
+    "id": "GPT-5.4",
+    "c": "OpenAI",
+    "date": "2026-03-05",
+    "url": "https://openai.com/index/introducing-gpt-5-4/",
+    "note": "",
+    "kind": "release",
+    "t": "2026-03-05T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 92.8,
+        "url": "https://openai.com/index/introducing-gpt-5-4/",
+        "protocol": "March 2026; maximum reported reasoning; HLE without tools."
+      },
+      {
+        "metric": "HLE",
+        "value": 39.8,
+        "url": "https://openai.com/index/introducing-gpt-5-4/",
+        "protocol": "March 2026; maximum reported reasoning; HLE without tools."
+      }
+    ],
+    "gap": 84,
+    "previous": "GPT-5.2 Thinking"
+  },
+  {
+    "id": "Grok 4.20",
+    "c": "xAI",
+    "date": "2026-03-10",
+    "url": "https://docs.x.ai/developers/release-notes",
+    "note": "API availability.",
+    "kind": "release",
+    "t": "2026-03-10T00:00:00.000Z",
+    "scores": [],
+    "gap": 113,
+    "previous": "Grok 4.1"
+  },
+  {
+    "id": "Muse Spark",
+    "c": "Meta",
+    "date": "2026-04-08",
+    "url": "https://ai.meta.com/blog/introducing-muse-spark-msl/",
+    "note": "",
+    "kind": "release",
+    "t": "2026-04-08T00:00:00.000Z",
+    "scores": [],
+    "gap": 368,
+    "previous": "Llama 4 Maverick Instruct"
+  },
+  {
+    "id": "Claude Opus 4.7",
+    "c": "Anthropic",
+    "date": "2026-04-16",
+    "url": "https://www.anthropic.com/news/claude-opus-4-7",
+    "note": "",
+    "kind": "release",
+    "t": "2026-04-16T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 94.2,
+        "url": "https://www-cdn.anthropic.com/037f06850df7fbe871e206dad004c3db5fd50340/Claude%20Opus%204.7%20System%20Card.pdf",
+        "protocol": "April 2026 system card; highest reported reasoning; HLE no tools; SWE agent setup."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 87.6,
+        "url": "https://www-cdn.anthropic.com/037f06850df7fbe871e206dad004c3db5fd50340/Claude%20Opus%204.7%20System%20Card.pdf",
+        "protocol": "April 2026 system card; highest reported reasoning; HLE no tools; SWE agent setup."
+      },
+      {
+        "metric": "HLE",
+        "value": 46.9,
+        "url": "https://www-cdn.anthropic.com/037f06850df7fbe871e206dad004c3db5fd50340/Claude%20Opus%204.7%20System%20Card.pdf",
+        "protocol": "April 2026 system card; highest reported reasoning; HLE no tools; SWE agent setup."
+      }
+    ],
+    "gap": 70,
+    "previous": "Claude Opus 4.6"
+  },
+  {
+    "id": "GPT-5.5",
+    "c": "OpenAI",
+    "date": "2026-04-23",
+    "url": "https://openai.com/index/introducing-gpt-5-5/",
+    "note": "ChatGPT/Codex release; API followed April 24.",
+    "kind": "release",
+    "t": "2026-04-23T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 93.6,
+        "url": "https://openai.com/index/introducing-gpt-5-5/",
+        "protocol": "April 2026; maximum reported reasoning; HLE without tools."
+      },
+      {
+        "metric": "HLE",
+        "value": 41.4,
+        "url": "https://openai.com/index/introducing-gpt-5-5/",
+        "protocol": "April 2026; maximum reported reasoning; HLE without tools."
+      }
+    ],
+    "gap": 49,
+    "previous": "GPT-5.4"
+  },
+  {
+    "id": "DeepSeek V4 Pro Preview",
+    "c": "DeepSeek",
+    "date": "2026-04-24",
+    "url": "https://api-docs.deepseek.com/updates/",
+    "note": "Preview.",
+    "kind": "release",
+    "t": "2026-04-24T00:00:00.000Z",
+    "scores": [],
+    "gap": 144,
+    "previous": "DeepSeek V3.2"
+  },
+  {
+    "id": "Claude Opus 4.8",
+    "c": "Anthropic",
+    "date": "2026-05-28",
+    "url": "https://www.anthropic.com/news/claude-opus-4-8",
+    "note": "",
+    "kind": "release",
+    "t": "2026-05-28T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 93.6,
+        "url": "https://www-cdn.anthropic.com/0b4915911bb0d19eca5b5ee635c80fef830a37ea.pdf",
+        "protocol": "May 2026 system card; highest reported reasoning; HLE no tools; SWE agent setup."
+      },
+      {
+        "metric": "SWE-bench Verified",
+        "value": 88.6,
+        "url": "https://www-cdn.anthropic.com/0b4915911bb0d19eca5b5ee635c80fef830a37ea.pdf",
+        "protocol": "May 2026 system card; highest reported reasoning; HLE no tools; SWE agent setup."
+      },
+      {
+        "metric": "HLE",
+        "value": 49.8,
+        "url": "https://www-cdn.anthropic.com/0b4915911bb0d19eca5b5ee635c80fef830a37ea.pdf",
+        "protocol": "May 2026 system card; highest reported reasoning; HLE no tools; SWE agent setup."
+      }
+    ],
+    "gap": 42,
+    "previous": "Claude Opus 4.7"
+  },
+  {
+    "id": "GPT-5.6 Sol",
+    "c": "OpenAI",
+    "date": "2026-07-09",
+    "url": "https://openai.com/index/gpt-5-6/",
+    "note": "General availability; earlier limited preview excluded.",
+    "kind": "release",
+    "t": "2026-07-09T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 94.6,
+        "url": "https://openai.com/index/gpt-5-6/",
+        "protocol": "July 2026; main Sol model, not Pro."
+      }
+    ],
+    "gap": 77,
+    "previous": "GPT-5.5"
+  },
+  {
+    "id": "Claude Opus 5",
+    "c": "Anthropic",
+    "date": "2026-07-24",
+    "url": "https://www.anthropic.com/news/claude-opus-5",
+    "note": "",
+    "kind": "release",
+    "t": "2026-07-24T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 93.7,
+        "url": "https://openai.com/index/gpt-6-astra/",
+        "protocol": "OpenAI’s September 2026 cross-company comparison; not an Anthropic self-reported launch score."
+      }
+    ],
+    "gap": 57,
+    "previous": "Claude Opus 4.8"
+  },
+  {
+    "id": "DeepSeek V4 Pro",
+    "c": "DeepSeek",
+    "date": "2026-08-13",
+    "url": "https://api-docs.deepseek.com/updates/",
+    "note": "General availability.",
+    "kind": "release",
+    "t": "2026-08-13T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "HLE",
+        "value": 42.7,
+        "url": "https://api-docs.deepseek.com/updates/",
+        "protocol": "August 2026 general availability report; no tools."
+      }
+    ],
+    "gap": 111,
+    "previous": "DeepSeek V4 Pro Preview"
+  },
+  {
+    "id": "Claude Fable 5.1",
+    "c": "Anthropic",
+    "date": "2026-09-01",
+    "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+    "note": "",
+    "kind": "release",
+    "t": "2026-09-01T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 93.7,
+        "url": "https://openai.com/index/gpt-6-astra/",
+        "protocol": "OpenAI’s September 2026 cross-company comparison; not an Anthropic self-reported launch score."
+      }
+    ],
+    "gap": 39,
+    "previous": "Claude Opus 5"
+  },
+  {
+    "id": "Gemini 3.8 Flash",
+    "c": "Google DeepMind",
+    "date": "2026-09-02",
+    "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+    "note": "",
+    "kind": "release",
+    "t": "2026-09-02T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 95.3,
+        "url": "https://openai.com/index/gpt-6-astra/",
+        "protocol": "OpenAI’s September 2026 comparison. HLE-Verified launch score excluded from the HLE chart."
+      }
+    ],
+    "gap": 195,
+    "previous": "Gemini 3.1 Pro"
+  },
+  {
+    "id": "GPT-6 Astra",
+    "c": "OpenAI",
+    "date": "2026-09-03",
+    "url": "https://openai.com/index/gpt-6-astra/",
+    "note": "Initially limited organizational rollout.",
+    "kind": "release",
+    "t": "2026-09-03T00:00:00.000Z",
+    "scores": [
+      {
+        "metric": "GPQA Diamond",
+        "value": 96,
+        "url": "https://openai.com/index/gpt-6-astra/",
+        "protocol": "September 2026 OpenAI comparison."
+      }
+    ],
+    "gap": 56,
+    "previous": "GPT-5.6 Sol"
+  },
+  {
+    "id": "DeepSeek V4.1 Flash",
+    "c": "DeepSeek",
+    "date": "2026-09-10",
+    "url": "https://api-docs.deepseek.com/updates/",
+    "note": "",
+    "kind": "release",
+    "t": "2026-09-10T00:00:00.000Z",
+    "scores": [],
+    "gap": 28,
+    "previous": "DeepSeek V4 Pro"
+  },
+  {
+    "id": "GPT-6 Sol",
+    "c": "OpenAI",
+    "date": "2026-09-22",
+    "url": "https://developers.openai.com/api/docs/changelog",
+    "note": "",
+    "kind": "release",
+    "t": "2026-09-22T00:00:00.000Z",
+    "scores": [],
+    "gap": 19,
+    "previous": "GPT-6 Astra"
+  },
+  {
+    "id": "Claude Opus 5.5",
+    "c": "Anthropic",
+    "date": "2026-09-22",
+    "url": "https://www.anthropic.com/claude-opus-5-5",
+    "note": "",
+    "kind": "release",
+    "t": "2026-09-22T00:00:00.000Z",
+    "scores": [],
+    "gap": 21,
+    "previous": "Claude Fable 5.1"
+  },
+  {
+    "id": "GPT-6.1 Sol",
+    "c": "OpenAI",
+    "date": "2026-09-29",
+    "url": "https://developers.openai.com/api/docs/changelog",
+    "note": "",
+    "kind": "release",
+    "t": "2026-09-29T00:00:00.000Z",
+    "scores": [],
+    "gap": 7,
+    "previous": "GPT-6 Sol"
+  }
+]

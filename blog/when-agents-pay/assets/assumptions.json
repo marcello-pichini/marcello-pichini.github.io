@@ -1,0 +1,59 @@
+{
+  "asOf": "2026-10-02",
+  "existingAnnualTransactions": 3800000000000.0,
+  "baselineSource": "https://www.mckinsey.com/industries/financial-services/our-insights/global-payments-report",
+  "baselineDefinition": "Broad existing payment economy, not a pure-human count",
+  "daysPerYear": 365,
+  "secondsPerDay": 86400,
+  "visaFY2025ProcessedTransactions": 257500000000.0,
+  "scenarios": [
+    {
+      "name": "Early scale",
+      "agents": 100000000.0,
+      "eventsPerDay": 10
+    },
+    {
+      "name": "Machine services",
+      "agents": 1000000000.0,
+      "eventsPerDay": 100
+    },
+    {
+      "name": "Stress case",
+      "agents": 10000000000.0,
+      "eventsPerDay": 1000
+    }
+  ],
+  "peakFactor": 5,
+  "nettingRatios": [
+    1,
+    10,
+    100,
+    1000
+  ],
+  "budgetModels": {
+    "bitcoin": {
+      "weightPerBlock": 4000000,
+      "assumedWeightPerTransfer": 560,
+      "secondsPerBlock": 600
+    },
+    "ethereum": {
+      "documentedGasTarget": 30000000,
+      "documentedFullBlockGas": 60000000,
+      "gasPerPlainETHTransfer": 21000,
+      "secondsPerSlot": 12
+    },
+    "kaspa": {
+      "blocksPerSecond": 10,
+      "computeMassPerBlock": 500000,
+      "assumedComputeMassPerTransfer": 2000,
+      "excludes": "storage/transient constraints, overhead, live load and complex scripts"
+    }
+  },
+  "formulas": {
+    "agentEventsPerDay": "agents * eventsPerDay",
+    "agentSettlementsPerSecond": "agents * eventsPerDay / 86400 / nettingRatio",
+    "totalPerSecond": "3.8e12 / 365 / 86400 + agentSettlementsPerSecond",
+    "peak": "totalPerSecond * peakFactor"
+  },
+  "warning": "Hypothetical adoption and workload scenarios; not forecasts, measured chain benchmarks or cross-rail equivalent TPS."
+}
