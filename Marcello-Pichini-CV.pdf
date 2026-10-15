@@ -1,38 +1,25 @@
-%PDF-1.4
+%PDF-1.3
 %‚„œ”
 1 0 obj
 <<
-/Producer (ReportLab PDF Library \055 \050opensource\051)
-/Author (Marcello Pichini)
-/CreationDate (D\07220261002172403\05302\04700\047)
-/Creator (\050unspecified\051)
-/Keywords ()
-/ModDate (D\07220261002172403\05302\04700\047)
-/Subject (\050unspecified\051)
-/Title (Marcello Pichini \055 Public CV)
-/Trapped (\057False)
+/Type /Catalog
+/Pages 2 0 R
 >>
 endobj
 2 0 obj
 <<
 /Type /Pages
 /Count 2
-/Kids [ 4 0 R 11 0 R ]
+/Kids [ 3 0 R 10 0 R ]
 >>
 endobj
 3 0 obj
 <<
-/Type /Catalog
-/Pages 2 0 R
->>
-endobj
-4 0 obj
-<<
-/Annots [ 5 0 R 6 0 R ]
-/Contents 7 0 R
+/Annots [ 4 0 R 5 0 R ]
+/Contents 6 0 R
 /MediaBox [ 0 0 595.28 841.89 ]
 /Resources <<
-/Font 8 0 R
+/Font 7 0 R
 /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
 >>
 /Rotate 0
@@ -42,7 +29,7 @@ endobj
 /Parent 2 0 R
 >>
 endobj
-5 0 obj
+4 0 obj
 <<
 /A <<
 /S /URI
@@ -55,7 +42,7 @@ endobj
 /Type /Annot
 >>
 endobj
-6 0 obj
+5 0 obj
 <<
 /A <<
 /S /URI
@@ -68,9 +55,9 @@ endobj
 /Type /Annot
 >>
 endobj
-7 0 obj
+6 0 obj
 <<
-/Length 5477
+/Length 5467
 >>
 stream
 1 0 0 1 0 0 cm
@@ -321,7 +308,7 @@ BT
 /F1 9.7 Tf
 14 TL
 -8 0 Td
-(\055 Product Owner for INNO1\054 a six\055person cross\055functional delivery team\054 translating between engineering\054) Tj
+(\055 Product Owner for a six\055person cross\055functional delivery team\054 translating between engineering\054) Tj
 T*
 8 0 Td
 (quantitative research and commercial stakeholders through the SAFe framework\056) Tj
@@ -426,13 +413,13 @@ Q
 
 endstream
 endobj
-8 0 obj
+7 0 obj
 <<
-/F1 9 0 R
-/F2 10 0 R
+/F1 8 0 R
+/F2 9 0 R
 >>
 endobj
-9 0 obj
+8 0 obj
 <<
 /BaseFont /Helvetica
 /Encoding /WinAnsiEncoding
@@ -441,7 +428,7 @@ endobj
 /Type /Font
 >>
 endobj
-10 0 obj
+9 0 obj
 <<
 /BaseFont /Helvetica-Bold
 /Encoding /WinAnsiEncoding
@@ -450,13 +437,13 @@ endobj
 /Type /Font
 >>
 endobj
-11 0 obj
+10 0 obj
 <<
-/Annots [ 12 0 R 13 0 R ]
-/Contents 14 0 R
+/Annots [ 11 0 R 12 0 R ]
+/Contents 13 0 R
 /MediaBox [ 0 0 595.28 841.89 ]
 /Resources <<
-/Font 8 0 R
+/Font 7 0 R
 /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
 >>
 /Rotate 0
@@ -466,7 +453,7 @@ endobj
 /Parent 2 0 R
 >>
 endobj
-12 0 obj
+11 0 obj
 <<
 /A <<
 /S /URI
@@ -479,7 +466,7 @@ endobj
 /Type /Annot
 >>
 endobj
-13 0 obj
+12 0 obj
 <<
 /A <<
 /S /URI
@@ -492,7 +479,7 @@ endobj
 /Type /Annot
 >>
 endobj
-14 0 obj
+13 0 obj
 <<
 /Length 4478
 >>
@@ -826,27 +813,26 @@ endstream
 endobj
 xref
 0 15
-0000000000 65535 f 
+0000000014 65535 f 
 0000000015 00000 n 
-0000000357 00000 n 
-0000000423 00000 n 
-0000000472 00000 n 
-0000000691 00000 n 
-0000000907 00000 n 
-0000001107 00000 n 
-0000006636 00000 n 
-0000006678 00000 n 
-0000006785 00000 n 
-0000006898 00000 n 
-0000007121 00000 n 
-0000007337 00000 n 
-0000007539 00000 n 
+0000000064 00000 n 
+0000000130 00000 n 
+0000000349 00000 n 
+0000000565 00000 n 
+0000000765 00000 n 
+0000006284 00000 n 
+0000006325 00000 n 
+0000006432 00000 n 
+0000006544 00000 n 
+0000006767 00000 n 
+0000006983 00000 n 
+0000007185 00000 n 
+0000000000 00001 f 
 trailer
 <<
 /Size 15
-/Root 3 0 R
-/Info 1 0 R
+/Root 1 0 R
 >>
 startxref
-12070
+11716
 %%EOF
