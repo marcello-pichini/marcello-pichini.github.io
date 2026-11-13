@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modelli e scoperte · AI per la scienza</title>
+<meta name="description" content="Quali modelli AI hanno prodotto le scoperte in catalogo, e tutti i rilasci dei principali laboratori.">
+<meta property="og:title" content="Modelli e scoperte">
+<meta property="og:description" content="Il collegamento fra i rilasci dei modelli dei principali laboratori e le scoperte scientifiche tracciate nel sito.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#12367e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2312367e'/%3E%3Cpath d='M8 24v-6M12 24v-11M16 24v-15M20 24v-8M24 24v-4' stroke='%23f2f6ff' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="stile.css">
+</head>
+<body>
+<header class="testata">
+  <div class="wrap">
+    <a class="marchio" href="index.html" aria-label="AI per la scienza, pagina iniziale">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f2f6ff"/><path d="M8 24v-6M12 24v-11M16 24v-15M20 24v-8M24 24v-4" stroke="#12367e" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <span>AI per la scienza</span>
+    </a>
+    <nav class="menu" aria-label="Sezioni del sito"><a href="index.html">Scoperte</a><a href="rilasci.html" aria-current="page">Modelli</a><a href="metodo.html">Metodo</a></nav>
+  </div>
+</header>
+
+<section class="banda" aria-labelledby="titolo-pagina">
+  <div class="wrap">
+    <h1 id="titolo-pagina">Quali modelli hanno prodotto le scoperte</h1>
+    <p class="lead" id="lead">Caricamento dei dati…</p>
+    <figure class="figura">
+      <div id="nuvola"></div>
+      <figcaption class="nota" id="nota-nuvola"></figcaption>
+    </figure>
+  </div>
+</section>
+
+<main>
+  <section class="sez" aria-labelledby="t-numeri">
+    <div class="wrap">
+      <h2 id="t-numeri">In numeri</h2>
+      <p class="sez-sub">Fai clic su un anno o su un laboratorio per filtrare l’elenco dei rilasci; su una famiglia per aprirne la scheda.</p>
+      <div class="pannelli" id="charts"></div>
+    </div>
+  </section>
+
+  <section class="sez" id="collegati" aria-labelledby="t-famiglie">
+    <div class="wrap">
+      <h2 id="t-famiglie">Famiglie con scoperte in catalogo</h2>
+      <p class="sez-sub">Una famiglia compare qui se almeno una scoperta del catalogo la indica come tecnologia usata. Le scoperte sono attribuite alla famiglia, non a un singolo rilascio.</p>
+      <div class="famiglie" id="famiglie">Caricamento…</div>
+    </div>
+  </section>
+
+  <section class="sez" id="tutti" aria-labelledby="t-rilasci">
+    <div class="wrap">
+      <h2 id="t-rilasci">Tutti i rilasci</h2>
+      <p class="sez-sub">Dal più recente. Dati di Epoch AI; il riquadro nell’ultima colonna dice se la famiglia del modello ha prodotto scoperte.</p>
+    </div>
+    <div class="filtri">
+      <div class="wrap">
+        <div class="campi">
+          <input id="q" type="search" placeholder="Cerca un modello o un laboratorio" aria-label="Cerca un modello">
+          <select id="lab" aria-label="Laboratorio"></select>
+          <select id="anno" aria-label="Anno"></select>
+          <button id="reset" type="button">Azzera i filtri</button>
+        </div>
+        <div class="riepilogo"><label><input type="checkbox" id="solo"> Solo modelli di famiglie con scoperte</label><span id="conta" aria-live="polite"></span></div>
+      </div>
+    </div>
+    <div class="wrap">
+      <table class="tab-rilasci">
+        <thead><tr><th>Modello</th><th>Laboratorio</th><th>Data</th><th class="num">Parametri</th><th class="num">Calcolo (FLOP)</th><th>Accesso</th><th>Scoperte</th></tr></thead>
+        <tbody id="lista"></tbody>
+      </table>
+      <div class="altro" id="altro"></div>
+    </div>
+  </section>
+
+  <section class="sez" aria-labelledby="t-fonte">
+    <div class="wrap prosa">
+      <h2 id="t-fonte" class="sez-tit">Da dove vengono i dati</h2>
+      <p id="fonte"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <p>I dati sui modelli sono di Epoch AI, ripubblicati con licenza CC BY 4.0; il collegamento con le scoperte e la selezione sono di questo sito.</p>
+    <p><a href="metodo.html">Come scegliamo e verifichiamo le voci</a></p>
+  </div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeUrl = u => /^https?:\/\//.test(u) ? u : "";
+const state = { q:"", lab:"", anno:"", solo:false };
+const ridotto = matchMedia("(prefers-reduced-motion: reduce)");
+let D = null, scoperte = {}, perFam = {}, famNome = {}, mostrati = 60, primaVolta = true;
+
+const fmtD = new Intl.DateTimeFormat("it-IT", { day:"numeric", month:"short", year:"numeric" });
+const fmtData = d => fmtD.format(new Date(d + "T12:00:00"));
+const ACCESSO = { "API access":"Via API", "Open weights (unrestricted)":"Pesi aperti", "Open weights (restricted use)":"Pesi aperti, uso limitato",
+  "Open weights (non-commercial)":"Pesi aperti, non commerciale", "Unreleased":"Non rilasciato", "Hosted access (no API)":"Solo app, senza API", "Limited access":"Accesso limitato" };
+const DOMINIO = { "Language":"linguaggio", "Vision":"visione", "Multimodal":"multimodale", "Biology":"biologia", "Earth science":"scienze della Terra",
+  "Image generation":"immagini", "Video":"video", "Audio":"audio", "Speech":"voce", "Robotics":"robotica", "Mathematics":"matematica", "Games":"giochi",
+  "Materials science":"materiali", "Medicine":"medicina", "Cybersecurity":"sicurezza informatica", "Search":"ricerca", "Recommendation":"raccomandazione",
+  "3D modeling":"modellazione 3D", "Other":"altro", "Chemistry":"chimica" };
+const dominio = s => s.split(",").map(x => DOMINIO[x.trim()] || x.trim()).filter(Boolean).join(", ");
+const fmtP = n => { if (!n) return ""; if (n >= 1e12) return (n / 1e12).toLocaleString("it-IT", { maximumFractionDigits:1 }) + " mila mld";
+  if (n >= 1e9) return (n / 1e9).toLocaleString("it-IT", { maximumFractionDigits: n >= 1e10 ? 0 : 1 }) + " mld";
+  if (n >= 1e6) return Math.round(n / 1e6).toLocaleString("it-IT") + " mln"; return n.toLocaleString("it-IT"); };
+const potenza = (v, html) => { const e = Math.floor(Math.log10(v)), m = v / 10 ** e;
+  const mm = m.toLocaleString("it-IT", { maximumFractionDigits:1 });
+  return html ? `${mm}×10<sup>${e}</sup>` : `${mm} × 10^${e}`; };
+const SUP = { "0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹","-":"⁻" };
+const potenzaTesto = v => { const e = Math.floor(Math.log10(v)); return `${(v / 10 ** e).toLocaleString("it-IT", { maximumFractionDigits:1 })} × 10${String(e).split("").map(c => SUP[c]).join("")} FLOP`; };
+const slug = s => "mod-" + s.toLowerCase().normalize("NFKD").replace(/[^\w]+/g, "-").replace(/^-|-$/g, "");
+const conScoperte = m => !!(m.famiglia && perFam[m.famiglia] && perFam[m.famiglia].length);
+const passa = m => (!state.lab || m.organizzazione === state.lab) && (!state.anno || m.data.slice(0, 4) === state.anno) &&
+  (!state.solo || conScoperte(m)) && (!state.q || (m.nome + " " + m.organizzazione + " " + m.dominio).toLowerCase().includes(state.q.toLowerCase()));
+const filtroAttivo = () => !!(state.q || state.lab || state.anno || state.solo);
+
+/* tooltip */
+const tip = document.createElement("div"); tip.className = "tip"; tip.setAttribute("aria-hidden", "true"); document.body.append(tip);
+function mostraTip(righe, x, y) {
+  tip.replaceChildren();
+  righe.forEach((r, i) => { const el = document.createElement(i ? "span" : "b"); el.textContent = r; if (i > 1) tip.append(document.createElement("br")); tip.append(el); });
+  tip.classList.add("on");
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  let L = x + 16, T = y - h - 16;
+  if (L + w > innerWidth - 8) L = Math.max(8, x - w - 16);
+  if (T < 8) T = y + 20;
+  tip.style.left = L + "px"; tip.style.top = T + "px";
+}
+const nascondiTip = () => tip.classList.remove("on");
+
+/* nuvola: data di rilascio contro calcolo di addestramento, scala logaritmica */
+let pts = [], nuvSvg = null, cur = -1;
+function nuvola() {
+  const W = Math.max(320, Math.round($("nuvola").clientWidth || 1000)), H = W < 560 ? 300 : 360;
+  const P = { x0: W < 560 ? 44 : 60, x1: W - 10, y0: 14, y1: H - 36 };
+  const conC = D.modelli.filter(m => m.compute_flop && +m.compute_flop > 0);
+  const t = m => Date.parse(m.data);
+  const tMin = Date.UTC(2020, 0, 1), tMax = Math.max(...conC.map(t)) + 30 * 864e5;
+  const lMin = 16.5, lMax = 27.5;
+  const X = v => P.x0 + (v - tMin) / (tMax - tMin) * (P.x1 - P.x0);
+  const Y = v => P.y1 - (Math.log10(v) - lMin) / (lMax - lMin) * (P.y1 - P.y0);
+  let g = "";
+  for (let e = 18; e <= 26; e += 2) { const y = Y(10 ** e);
+    g += `<line class="asse" x1="${P.x0}" x2="${P.x1}" y1="${y}" y2="${y}"/><text class="tick y" x="${P.x0 - 10}" y="${y + 4}">10<tspan dy="-6" font-size="9">${e}</tspan></text>`; }
+  for (let a = 2020; a <= new Date(tMax).getUTCFullYear(); a++) { const x = X(Date.UTC(a, 0, 1));
+    g += `<line class="asse" x1="${x}" x2="${x}" y1="${P.y1}" y2="${P.y1 + 8}"/><text class="tick" x="${x + 5}" y="${P.y1 + 24}">${a}</text>`; }
+  pts = conC.filter(m => t(m) >= tMin).map(m => ({ m, x: X(t(m)), y: Y(+m.compute_flop), ev: conScoperte(m) }));
+  const cerchi = pts.map((p, i) => ({ p, i })).sort((a, b) => a.p.ev - b.p.ev)
+    .map(({ p, i }) => `<circle class="punto${p.ev ? " evid" : ""}" data-i="${i}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${p.ev ? 5.5 : 4.5}" style="--d:${Math.round((p.x - P.x0) / (P.x1 - P.x0) * 900)}ms"/>`).join("");
+  $("nuvola").innerHTML = `<svg viewBox="0 0 ${W} ${H}" class="${primaVolta ? "" : "fermo"}" role="img" aria-label="Grafico a punti: ${pts.length} rilasci con stima del calcolo, dal 2020 a oggi, su scala logaritmica da 10 alla 17 a 10 alla 27 FLOP. In evidenza i ${pts.filter(p => p.ev).length} rilasci di famiglie con scoperte. L'elenco completo è più in basso.">${g}<g>${cerchi}</g><rect x="${P.x0 - 8}" y="0" width="${P.x1 - P.x0 + 16}" height="${P.y1 + 10}" fill="transparent"/></svg>`;
+  nuvSvg = $("nuvola").firstElementChild;
+  nuvSvg.addEventListener("pointermove", e => {
+    const q = nuvSvg.createSVGPoint(); q.x = e.clientX; q.y = e.clientY;
+    const v = q.matrixTransform(nuvSvg.getScreenCTM().inverse());
+    let best = -1, bd = Infinity;
+    pts.forEach((p, i) => { const d = Math.hypot(p.x - v.x, p.y - v.y) + (filtroAttivo() && !passa(p.m) ? 12 : 0); if (d < bd) { bd = d; best = i; } });
+    if (best >= 0 && bd < 28) evid(best, e.clientX, e.clientY); else spegni();
+  });
+  nuvSvg.addEventListener("pointerleave", spegni);
+  nuvSvg.addEventListener("click", () => { if (cur >= 0) vaiA(pts[cur].m); });
+  const nSenza = D.modelli.length - conC.length, nPrima = conC.length - pts.length;
+  $("nota-nuvola").innerHTML = `<span class="chiave"><i style="background:var(--sole)"></i>Famiglia con scoperte in catalogo</span><span class="chiave"><i style="background:var(--tratto-2)"></i>Altri rilasci</span><span>Asse verticale: calcolo di addestramento stimato da Epoch AI, in scala logaritmica. ${nSenza} rilasci senza stima${nPrima ? ` e ${nPrima} ${nPrima === 1 ? "precedente" : "precedenti"} al 2020` : ""} non compaiono qui ma sono nell’elenco.</span>`;
+  primaVolta = false;
+  aggiornaNuvola();
+}
+function evid(i, x, y) {
+  if (cur !== i) { nuvSvg.querySelector(".punto.su")?.classList.remove("su"); nuvSvg.querySelector(`[data-i="${i}"]`).classList.add("su"); cur = i; }
+  const m = pts[i].m, sc = conScoperte(m) ? perFam[m.famiglia].length : 0;
+  mostraTip([m.nome, `${m.organizzazione}, ${fmtData(m.data)}`, potenzaTesto(+m.compute_flop), sc ? `Famiglia ${famNome[m.famiglia]}: ${sc} ${sc === 1 ? "scoperta" : "scoperte"}` : "Nessuna scoperta in catalogo"], x, y);
+}
+function spegni() { nuvSvg?.querySelector(".punto.su")?.classList.remove("su"); cur = -1; nascondiTip(); }
+function aggiornaNuvola() { if (!nuvSvg) return; const a = filtroAttivo(); nuvSvg.querySelectorAll(".punto").forEach(c => c.classList.toggle("spento", a && !passa(pts[+c.dataset.i].m))); }
+
+function vaiA(m) {
+  const id = slug(m.nome);
+  if (!passa(m)) { Object.assign(state, { q:"", lab:"", anno:"", solo:false }); ["q", "lab", "anno"].forEach(k => $(k).value = ""); $("solo").checked = false; }
+  const tutte = D.modelli.filter(passa), pos = tutte.indexOf(m);
+  if (pos >= mostrati) mostrati = pos + 20;
+  render(); grafici();
+  const el = document.getElementById(id); if (!el) return;
+  document.querySelectorAll(".tab-rilasci tr.evid").forEach(r => r.classList.remove("evid"));
+  el.classList.add("evid");
+  el.scrollIntoView({ block:"center", behavior: ridotto.matches ? "auto" : "smooth" });
+}
+
+/* grafici */
+function righe(voci, max, attr) {
+  return `<div class="righe">` + voci.map(([v, n, k, lab]) => `<button class="riga" type="button" ${attr}="${esc(k ?? v)}" aria-pressed="${attr === "data-lab" ? state.lab === v : false}" aria-label="${esc(lab ?? v)}: ${n}">
+    <span class="et" title="${esc(lab ?? v)}">${esc(lab ?? v)}</span><span class="bin"><span class="bar" style="width:${(n / max * 100).toFixed(1)}%"></span></span><span class="val">${n}</span></button>`).join("") + `</div>`;
+}
+function grafici() {
+  const per = {}; D.modelli.forEach(m => { const a = m.data.slice(0, 4); if (a >= "2020") per[a] = (per[a] || 0) + 1; });
+  const anni = Object.keys(per).sort();
+  const W = Math.max(300, Math.round(($("charts").clientWidth || 1000) - 46)), H = 220;
+  const C = { x0:40, x1:W - 10, base:H - 30, alto:H - 64 };
+  const max = Math.ceil(Math.max(...Object.values(per)) / 20) * 20;
+  const slot = (C.x1 - C.x0) / anni.length, bw = Math.min(24, slot * .6);
+  let svg = [0, max / 2, max].map(v => { const y = C.base - v / max * C.alto; return `<line class="${v ? "griglia" : "base"}" x1="${C.x0}" x2="${C.x1}" y1="${y}" y2="${y}"/><text class="ax" x="${C.x0 - 8}" y="${y + 4}" text-anchor="end">${v}</text>`; }).join("");
+  svg += anni.map((a, i) => { const h = per[a] / max * C.alto, x = C.x0 + slot * i + slot / 2, y = C.base - h;
+    return `<path class="col${state.anno === a ? " su" : ""}" d="M${x - bw / 2},${C.base} V${y + 4} q0,-4 4,-4 h${bw - 8} q4,0 4,4 V${C.base} Z"/><text class="lab" x="${x}" y="${y - 8}" text-anchor="middle">${per[a]}</text><text class="ax" x="${x}" y="${C.base + 20}" text-anchor="middle">${a}</text>
+      <rect data-anno="${a}" x="${C.x0 + slot * i}" y="0" width="${slot}" height="${C.base + 26}" fill="transparent" tabindex="0" role="button" aria-pressed="${state.anno === a}" aria-label="${a}: ${per[a]} rilasci" style="cursor:pointer"/>`; }).join("");
+  const labs = Object.entries(D.modelli.reduce((o, m) => { if (m.data >= "2020") o[m.organizzazione] = (o[m.organizzazione] || 0) + 1; return o; }, {})).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 10);
+  const fams = D.famiglie.filter(f => f.n_scoperte).slice(0, 10).map(f => [f.nome, f.n_scoperte, f.id]);
+  const inCorso = anni.at(-1) == new Date().getFullYear() ? ` Il ${anni.at(-1)} è ancora in corso.` : "";
+  $("charts").innerHTML =
+    `<div class="pannello largo"><h3>Rilasci per anno</h3><p class="descr">Modelli dei principali laboratori nei dati di Epoch AI, dal 2020.${inCorso}</p><svg viewBox="0 0 ${W} ${H}" id="colonne" role="group" aria-label="Colonne dei rilasci per anno">${svg}</svg>
+     <details><summary>Vedi i dati in tabella</summary><table class="tab-mini"><tr><th>Anno</th><th>Rilasci</th></tr>${anni.map(a => `<tr><td>${a}</td><td>${per[a]}</td></tr>`).join("")}</table></details></div>` +
+    `<div class="pannello"><h3>Per laboratorio</h3><p class="descr">I 10 con più rilasci dal 2020.</p>${righe(labs, labs[0][1], "data-lab")}</div>` +
+    `<div class="pannello"><h3>Famiglie con più scoperte</h3><p class="descr">Scoperte del catalogo che citano la famiglia come tecnologia.</p>${righe(fams, fams[0][1], "data-fam")}</div>`;
+  const col = $("colonne");
+  col.querySelectorAll("rect[data-anno]").forEach(r => {
+    const a = r.dataset.anno, show = e => mostraTip([a, `${per[a]} rilasci`], e.clientX, e.clientY);
+    r.addEventListener("pointerenter", show); r.addEventListener("pointermove", show); r.addEventListener("pointerleave", nascondiTip);
+  });
+}
+
+function famiglie() {
+  const con = D.famiglie.filter(f => f.n_scoperte > 0);
+  $("famiglie").innerHTML = con.map(f => {
+    const lista = f.scoperte.map(id => scoperte[id]).filter(Boolean).sort((a, b) => b.data_pubblicazione.localeCompare(a.data_pubblicazione));
+    const li = s => `<li><time datetime="${esc(s.data_pubblicazione)}">${esc(fmtData(s.data_pubblicazione))}</time><a href="index.html#scoperta=${encodeURIComponent(s.id)}">${esc(s.titolo)}</a></li>`;
+    return `<article class="famiglia" id="fam-${esc(f.id)}"><h3>${esc(f.nome)}<span>${f.n_scoperte} ${f.n_scoperte === 1 ? "scoperta" : "scoperte"}</span></h3>
+      <ul>${lista.slice(0, 4).map(li).join("")}</ul>
+      ${lista.length > 4 ? `<button class="piu altre" type="button" data-f="${esc(f.id)}" aria-expanded="false">Mostra tutte le ${lista.length}</button>` : ""}
+      <p class="rel">${f.n_modelli ? `Rilasci nei dati Epoch: ${f.modelli.slice(0, 6).map(esc).join(", ")}${f.n_modelli > 6 ? ` e altri ${f.n_modelli - 6}` : ""}` : "Nessun rilascio nei dati Epoch AI: è un modello che Epoch non cataloga."}</p></article>`;
+  }).join("");
+  $("famiglie").addEventListener("click", e => {
+    const b = e.target.closest(".altre"); if (!b) return;
+    const f = D.famiglie.find(x => x.id === b.dataset.f), ul = b.previousElementSibling, aperto = b.getAttribute("aria-expanded") === "true";
+    const lista = f.scoperte.map(id => scoperte[id]).filter(Boolean).sort((a, c) => c.data_pubblicazione.localeCompare(a.data_pubblicazione));
+    const li = s => `<li><time datetime="${esc(s.data_pubblicazione)}">${esc(fmtData(s.data_pubblicazione))}</time><a href="index.html#scoperta=${encodeURIComponent(s.id)}">${esc(s.titolo)}</a></li>`;
+    ul.innerHTML = (aperto ? lista.slice(0, 4) : lista).map(li).join("");
+    b.setAttribute("aria-expanded", !aperto); b.textContent = aperto ? `Mostra tutte le ${lista.length}` : "Mostra meno";
+  });
+}
+
+function render() {
+  const ms = D.modelli.filter(passa);
+  $("conta").textContent = `${ms.length} ${ms.length === 1 ? "rilascio" : "rilasci"}`;
+  $("lista").innerHTML = ms.slice(0, mostrati).map(m => {
+    const sc = conScoperte(m) ? perFam[m.famiglia].length : 0, u = safeUrl(m.link), c = +m.compute_flop;
+    return `<tr id="${esc(slug(m.nome))}">
+      <td><span class="nome">${u ? `<a href="${esc(u)}" rel="noopener">${esc(m.nome)}</a>` : esc(m.nome)}</span>${m.frontier ? `<span class="frontiera" title="Fra i modelli con più calcolo al momento del rilascio, secondo Epoch AI">frontiera</span>` : ""}<span class="sub2">${esc(dominio(m.dominio))}</span></td>
+      <td data-l="Laboratorio">${esc(m.organizzazione)}</td>
+      <td data-l="Data"><time datetime="${esc(m.data)}">${esc(fmtData(m.data))}</time></td>
+      <td class="num" data-l="Parametri">${esc(fmtP(m.parametri))}</td>
+      <td class="num" data-l="Calcolo">${c > 0 ? potenza(c, true) : ""}</td>
+      <td data-l="Accesso">${esc(ACCESSO[m.accesso] || m.accesso)}</td>
+      <td>${sc ? `<a class="badge" href="#fam-${esc(m.famiglia)}">${esc(famNome[m.famiglia])}: ${sc}</a>` : ""}</td></tr>`;
+  }).join("") || `<tr><td colspan="7" class="vuoto">Nessun rilascio con questi filtri. Togli un filtro o premi “Azzera i filtri”.</td></tr>`;
+  $("altro").innerHTML = ms.length > mostrati ? `<button type="button" id="piu-righe">Mostra altri ${Math.min(100, ms.length - mostrati)} di ${ms.length - mostrati}</button>` : "";
+  aggiornaNuvola();
+}
+
+Promise.all([
+  fetch("data/modelli.json", { cache:"no-store" }).then(r => r.json()),
+  fetch("data/scoperte.json", { cache:"no-store" }).then(r => r.json())
+]).then(([d, sc]) => {
+  D = d;
+  sc.forEach(s => scoperte[s.id] = s);
+  d.famiglie.forEach(f => { perFam[f.id] = f.scoperte; famNome[f.id] = f.nome; });
+  const nFam = d.famiglie.filter(f => f.n_scoperte > 0).length;
+  $("lead").innerHTML = `<b>${d.modelli.length} rilasci</b> dei principali laboratori dal 2020, con i dati di Epoch AI. <b>${nFam} famiglie</b> di modelli hanno prodotto almeno una delle ${sc.length} scoperte in catalogo: ${d.scoperte_collegate.length} scoperte in tutto.`;
+  const labs = [...new Set(d.modelli.map(m => m.organizzazione))].sort((a, b) => a.localeCompare(b, "it"));
+  $("lab").innerHTML = `<option value="">Tutti i laboratori</option>` + labs.map(l => `<option>${esc(l)}</option>`).join("");
+  const anni = [...new Set(d.modelli.map(m => m.data.slice(0, 4)))].sort().reverse();
+  $("anno").innerHTML = `<option value="">Tutti gli anni</option>` + anni.map(a => `<option>${esc(a)}</option>`).join("");
+  $("fonte").innerHTML = `Nome, laboratorio, data, dominio, parametri, calcolo e accessibilità dei modelli vengono da <a href="${esc(d.fonte.url)}" rel="noopener">${esc(d.fonte.nome)}</a>, scaricati il ${esc(fmtData(d.fonte.scaricato))} (${esc(d.fonte.record_originali)} record nel file originale) e ripubblicati con licenza <a href="${esc(d.fonte.licenza_url)}" rel="noopener">${esc(d.fonte.licenza)}</a>; domini e tipi di accesso sono tradotti in italiano. Qui ci sono i rilasci dal 2020 dei principali laboratori, più i modelli di qualsiasi data collegati a una scoperta. Il collegamento fra modello e scoperta è nostro: confrontiamo la tecnologia indicata e il titolo di ogni scoperta con il nome della famiglia. È un accostamento per nome, non una verifica che proprio quel rilascio sia stato usato nell’esperimento. Ultima generazione dei dati: ${esc(fmtData(d.generato))}.`;
+  nuvola(); grafici(); famiglie(); render();
+  if (location.hash.startsWith("#fam-")) document.getElementById(location.hash.slice(1))?.scrollIntoView();
+}).catch(e => { $("famiglie").textContent = "Dati non caricati. Apri la pagina da un server locale (python3 -m http.server)."; $("lead").textContent = ""; });
+
+["q", "lab", "anno"].forEach(id => $(id).addEventListener("input", e => { state[id] = e.target.value; mostrati = 60; render(); grafici(); }));
+$("solo").addEventListener("change", e => { state.solo = e.target.checked; mostrati = 60; render(); });
+$("reset").addEventListener("click", () => { Object.assign(state, { q:"", lab:"", anno:"", solo:false }); ["q", "lab", "anno"].forEach(k => $(k).value = ""); $("solo").checked = false; mostrati = 60; render(); grafici(); });
+$("altro").addEventListener("click", e => { if (e.target.id === "piu-righe") { mostrati += 100; render(); } });
+$("charts").addEventListener("click", e => {
+  const a = e.target.closest("[data-anno]"), l = e.target.closest("[data-lab]"), f = e.target.closest("[data-fam]");
+  if (a) { state.anno = state.anno === a.dataset.anno ? "" : a.dataset.anno; $("anno").value = state.anno; }
+  else if (l) { state.lab = state.lab === l.dataset.lab ? "" : l.dataset.lab; $("lab").value = state.lab; }
+  else if (f) { const el = document.getElementById("fam-" + f.dataset.fam); history.replaceState(null, "", "#fam-" + f.dataset.fam); el?.scrollIntoView({ block:"start", behavior: ridotto.matches ? "auto" : "smooth" }); return; }
+  else return;
+  nascondiTip(); mostrati = 60; render(); grafici();
+});
+$("charts").addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches("rect[data-anno]")) { e.preventDefault(); e.target.dispatchEvent(new MouseEvent("click", { bubbles:true })); } });
+let largh = innerWidth, tRes;
+addEventListener("resize", () => { clearTimeout(tRes); tRes = setTimeout(() => { if (D && innerWidth !== largh) { largh = innerWidth; nuvola(); grafici(); } }, 150); });
+</script>
+</body>
+</html>

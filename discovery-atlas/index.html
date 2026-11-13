@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI per la scienza</title>
+<meta name="description" content="Scoperte scientifiche ottenute con l'intelligenza artificiale, dai comunicati ufficiali.">
+<meta property="og:title" content="AI per la scienza">
+<meta property="og:description" content="Scoperte scientifiche ottenute con l'intelligenza artificiale, tracciate dai comunicati ufficiali dal 2020.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#12367e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2312367e'/%3E%3Cpath d='M8 24v-6M12 24v-11M16 24v-15M20 24v-8M24 24v-4' stroke='%23f2f6ff' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="stile.css">
+</head>
+<body>
+<header class="testata">
+  <div class="wrap">
+    <a class="marchio" href="index.html" aria-label="AI per la scienza, pagina iniziale">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f2f6ff"/><path d="M8 24v-6M12 24v-11M16 24v-15M20 24v-8M24 24v-4" stroke="#12367e" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <span>AI per la scienza</span>
+    </a>
+    <nav class="menu" aria-label="Sezioni del sito"><a href="index.html" aria-current="page">Scoperte</a><a href="rilasci.html">Modelli</a><a href="metodo.html">Metodo</a></nav>
+  </div>
+</header>
+
+<section class="banda" aria-labelledby="titolo-pagina">
+  <div class="wrap">
+    <h1 id="titolo-pagina">Scoperte scientifiche ottenute con l’AI</h1>
+    <p class="lead" id="lead">Caricamento del catalogo…</p>
+    <figure class="figura">
+      <div id="spettro"></div>
+      <figcaption class="nota">Passa sopra un tratto per vedere la scoperta, fai clic per aprirla. Con la tastiera: frecce sinistra e destra, poi Invio.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<main>
+  <section class="sez" id="categorie" aria-labelledby="t-ambiti">
+    <div class="wrap">
+      <h2 id="t-ambiti">Esplora per ambito</h2>
+      <p class="sez-sub">Il numero accanto a ogni ambito è quante scoperte contiene.</p>
+      <nav class="ambiti" id="cat" aria-label="Ambiti"></nav>
+    </div>
+  </section>
+
+  <section class="sez" aria-labelledby="t-numeri">
+    <div class="wrap">
+      <h2 id="t-numeri">In numeri</h2>
+      <p class="sez-sub">Fai clic su una riga o su un anno per filtrare l’elenco qui sotto; un secondo clic toglie il filtro.</p>
+      <div class="pannelli" id="charts"></div>
+    </div>
+  </section>
+
+  <section class="sez" id="elenco" aria-labelledby="t-elenco">
+    <div class="wrap">
+      <h2 id="t-elenco">Tutte le scoperte</h2>
+      <p class="sez-sub">Ogni voce rimanda al comunicato originale. Le cifre sono quelle dichiarate dalle fonti.</p>
+    </div>
+    <div class="filtri">
+      <div class="wrap">
+        <div class="campi">
+          <input id="q" type="search" placeholder="Cerca nel titolo, nel testo o nella tecnologia" aria-label="Cerca nel testo">
+          <select id="org" aria-label="Organizzazione"></select>
+          <select id="ord" aria-label="Ordinamento"><option value="desc">Più recenti prima</option><option value="asc">Meno recenti prima</option><option value="rilevanza">Più rilevanti prima</option></select>
+          <button id="reset" type="button">Azzera i filtri</button>
+        </div>
+        <div class="riepilogo"><span id="conta" aria-live="polite"></span></div>
+      </div>
+    </div>
+    <div class="wrap"><div id="lista">Caricamento…</div></div>
+  </section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <p>Ogni voce rimanda al comunicato originale. Le cifre sono quelle dichiarate dalle fonti, non verificate in modo indipendente.</p>
+    <p><a href="metodo.html">Come scegliamo e verifichiamo le voci</a></p>
+  </div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeUrl = u => /^https?:\/\//.test(u) ? u : "#";
+const state = { q:"", ambito:"", org:"", anno:"", ord:"desc" };
+const ridotto = matchMedia("(prefers-reduced-motion: reduce)");
+let items = [], famDi = {};
+let ancora = decodeURIComponent(location.hash).startsWith("#scoperta=") ? decodeURIComponent(location.hash).slice(10) : null;
+
+// Un'organizzazione composta (es. "Google DeepMind e Google Research") conta come la prima voce.
+const orgDi = s => s.organizzazione.split(/,| e /)[0].trim();
+// Rilevanza 0-100: media di impatto, validazione e novità (ciascuno 1-5) × 20. Valutazione editoriale, vedi metodo.html.
+const punteggio = s => Math.round((s.rilevanza.impatto + s.rilevanza.validazione + s.rilevanza.novita) / 3 * 20);
+const media = arr => Math.round(arr.reduce((a, s) => a + punteggio(s), 0) / arr.length);
+const conta = (arr, f) => { const m = {}; arr.forEach(x => { const k = f(x); m[k] = (m[k] || 0) + 1; }); return m; };
+const ordina = m => Object.entries(m).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+const fmtD = new Intl.DateTimeFormat("it-IT", { day:"numeric", month:"short", year:"numeric" });
+const fmtData = d => fmtD.format(new Date(d + "T12:00:00"));
+const passa = s => {
+  const q = state.q.toLowerCase();
+  return (!state.ambito || s.ambito === state.ambito) && (!state.org || orgDi(s) === state.org) &&
+    (!state.anno || s.data_pubblicazione.startsWith(state.anno)) &&
+    (!q || [s.titolo, s.sommario, s.tecnologia_ai, s.organizzazione].join(" ").toLowerCase().includes(q));
+};
+const filtroAttivo = () => !!(state.q || state.ambito || state.org || state.anno);
+
+/* tooltip: un solo elemento, testo inserito con textContent */
+const tip = document.createElement("div"); tip.className = "tip"; tip.setAttribute("aria-hidden", "true"); document.body.append(tip);
+function mostraTip(righe, x, y) {
+  tip.replaceChildren();
+  righe.forEach((r, i) => { const el = document.createElement(i ? "span" : "b"); el.textContent = r; if (i > 1) tip.append(document.createElement("br")); tip.append(el); });
+  tip.classList.add("on");
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  let L = x + 16, T = y - h - 16;
+  if (L + w > innerWidth - 8) L = Math.max(8, x - w - 16);
+  if (T < 8) T = y + 20;
+  tip.style.left = L + "px"; tip.style.top = T + "px";
+}
+const nascondiTip = () => tip.classList.remove("on");
+
+/* spettro delle scoperte: un tratto per scoperta, alto quanto la rilevanza */
+const SP = { x0:40, x1:992, base:196, alto:168, W:1000 };
+let primaVolta = true;
+let sp = [], spOrd = [], spCur = -1, spSvg = null;
+function spettro() {
+  SP.W = Math.max(320, Math.round($("spettro").clientWidth || 1000)); SP.x0 = SP.W < 560 ? 30 : 40; SP.x1 = SP.W - 8;
+  const t0 = Date.UTC(2020, 0, 1);
+  const tMax = Math.max(...items.map(s => Date.parse(s.data_pubblicazione)));
+  const t1 = tMax + 25 * 864e5;
+  const X = t => SP.x0 + (t - t0) / (t1 - t0) * (SP.x1 - SP.x0);
+  let g = "";
+  [0, 50, 100].forEach(v => { const y = SP.base - v / 100 * SP.alto;
+    g += `<line class="asse" x1="${SP.x0}" x2="${SP.x1}" y1="${y}" y2="${y}"/><text class="tick y" x="${SP.x0 - 10}" y="${y + 4}">${v}</text>`; });
+  for (let a = 2020; a <= new Date(tMax).getUTCFullYear(); a++) { const x = X(Date.UTC(a, 0, 1));
+    g += `<line class="asse" x1="${x}" x2="${x}" y1="${SP.base}" y2="${SP.base + 8}"/><text class="tick" x="${x + 5}" y="${SP.base + 24}">${a}</text>`; }
+  sp = items.map(s => ({ s, x: X(Date.parse(s.data_pubblicazione)), h: Math.max(4, punteggio(s) / 100 * SP.alto) }));
+  spOrd = sp.map((_, i) => i).sort((a, b) => sp[a].x - sp[b].x);
+  const tratti = sp.map((p, i) => `<line class="tratto" data-i="${i}" x1="${p.x.toFixed(1)}" x2="${p.x.toFixed(1)}" y1="${SP.base}" y2="${(SP.base - p.h).toFixed(1)}" style="--d:${Math.round((p.x - SP.x0) / (SP.x1 - SP.x0) * 1100)}ms"/>`).join("");
+  $("spettro").innerHTML = `<svg viewBox="0 0 ${SP.W} 228" class="${primaVolta ? "" : "fermo"}" tabindex="0" role="group" aria-label="Spettro delle scoperte: ${items.length} tratti, uno per scoperta, dal 2020 a oggi; l'altezza è la rilevanza da 0 a 100. L'elenco completo è più in basso nella pagina.">${g}<g>${tratti}</g><rect x="${SP.x0 - 6}" y="0" width="${SP.x1 - SP.x0 + 12}" height="${SP.base + 10}" fill="transparent"/></svg>`;
+  spSvg = $("spettro").firstElementChild;
+  spSvg.addEventListener("pointermove", e => {
+    const p = spSvg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
+    const v = p.matrixTransform(spSvg.getScreenCTM().inverse());
+    let best = -1, bd = Infinity;
+    sp.forEach((q, i) => { const pen = filtroAttivo() && !passa(q.s) ? 14 : 0; const d = Math.abs(q.x - v.x) + pen; if (d < bd) { bd = d; best = i; } });
+    if (best >= 0 && bd < 24) spEvid(best, e.clientX, e.clientY); else spSpegni();
+  });
+  spSvg.addEventListener("pointerleave", spSpegni);
+  spSvg.addEventListener("click", () => { if (spCur >= 0) vaiA(sp[spCur].s.id); });
+  spSvg.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+      e.preventDefault();
+      const pos = spCur < 0 ? (e.key === "ArrowRight" ? -1 : spOrd.length) : spOrd.indexOf(spCur);
+      const n = Math.min(spOrd.length - 1, Math.max(0, pos + (e.key === "ArrowRight" ? 1 : -1)));
+      const el = spSvg.querySelector(`[data-i="${spOrd[n]}"]`).getBoundingClientRect();
+      spEvid(spOrd[n], el.left + el.width / 2, el.top);
+    } else if (e.key === "Enter" && spCur >= 0) { e.preventDefault(); vaiA(sp[spCur].s.id); }
+    else if (e.key === "Escape") spSpegni();
+  });
+  spSvg.addEventListener("blur", spSpegni);
+  primaVolta = false;
+  spAggiorna();
+}
+function spEvid(i, x, y) {
+  if (spCur !== i) {
+    spSvg.querySelector(".tratto.su")?.classList.remove("su");
+    spSvg.querySelector(`[data-i="${i}"]`).classList.add("su");
+    spCur = i;
+  }
+  const s = sp[i].s;
+  mostraTip([s.titolo, `${fmtData(s.data_pubblicazione)}, ${s.organizzazione}`, `Rilevanza ${punteggio(s)}, ${s.ambito}`], x, y);
+}
+function spSpegni() { spSvg?.querySelector(".tratto.su")?.classList.remove("su"); spCur = -1; nascondiTip(); }
+function spAggiorna() {
+  if (!spSvg) return;
+  const att = filtroAttivo();
+  spSvg.querySelectorAll(".tratto").forEach(l => l.classList.toggle("spento", att && !passa(sp[+l.dataset.i].s)));
+}
+
+function vaiA(id) {
+  if (!document.getElementById(id)) { state.q = state.ambito = state.org = state.anno = ""; $("q").value = ""; lista(); grafici(); }
+  const el = document.getElementById(id); if (!el) return;
+  document.querySelectorAll(".voce.evid").forEach(v => v.classList.remove("evid"));
+  el.classList.add("evid");
+  el.scrollIntoView({ block:"center", behavior: ridotto.matches ? "auto" : "smooth" });
+  history.replaceState(null, "", "#scoperta=" + encodeURIComponent(id));
+}
+
+/* grafici */
+function righe(key, voci, max, extra) {
+  return `<div class="righe">` + voci.map(([v, n]) => {
+    const m = extra ? extra[v] : null;
+    return `<button class="riga" type="button" data-k="${key}" data-v="${esc(v)}" aria-pressed="${state[key] === v}" aria-label="${esc(v)}: ${n} ${n === 1 ? "scoperta" : "scoperte"}${m != null ? ", rilevanza media " + m : ""}">
+      <span class="et" title="${esc(v)}">${esc(v)}</span>
+      <span class="bin"><span class="bar" style="width:${(n / max * 100).toFixed(1)}%"></span></span>
+      <span class="val">${n}${m != null ? `<small>media ${m}</small>` : ""}</span></button>`; }).join("") + `</div>`;
+}
+const tondo = v => { if (v <= 0) return 10; const p = 10 ** Math.floor(Math.log10(v)); return Math.ceil(v / p * 2) / 2 * p; };
+function grafici() {
+  const amb = ordina(conta(items, s => s.ambito));
+  const medie = Object.fromEntries(Object.entries(Object.groupBy(items, s => s.ambito)).map(([v, a]) => [v, media(a)]));
+  const org = ordina(conta(items, orgDi));
+  const perAnno = Object.groupBy(items, s => s.data_pubblicazione.slice(0, 4));
+  const anni = Object.keys(perAnno).sort();
+  const somma = a => (perAnno[a] || []).reduce((n, s) => n + punteggio(s), 0);
+  const top = tondo(Math.max(...anni.map(somma)));
+  const W = Math.max(300, Math.round(($("charts").clientWidth || 1000) - 46));
+  const L = { x0:52, x1:W - 22, base:214, alto:180 };
+  const X = i => L.x0 + i / Math.max(1, anni.length - 1) * (L.x1 - L.x0);
+  const Y = v => L.base - v / top * L.alto;
+  const pts = anni.map((a, i) => [X(i), Y(somma(a))]);
+  const iMax = anni.reduce((b, a, i) => somma(a) > somma(anni[b]) ? i : b, 0), iUlt = anni.length - 1;
+  const passo = (L.x1 - L.x0) / Math.max(1, anni.length - 1);
+  let svg = [0, top / 2, top].map(v => `<line class="${v ? "griglia" : "base"}" x1="${L.x0}" x2="${L.x1}" y1="${Y(v)}" y2="${Y(v)}"/><text class="ax" x="${L.x0 - 10}" y="${Y(v) + 4}" text-anchor="end">${v.toLocaleString("it-IT")}</text>`).join("");
+  svg += `<path class="area" d="M${pts[0][0]},${L.base} ${pts.map(p => "L" + p.join(",")).join(" ")} L${pts[iUlt][0]},${L.base} Z"/>`;
+  svg += `<polyline class="linea" points="${pts.map(p => p.join(",")).join(" ")}"/>`;
+  svg += anni.map((a, i) => `<rect data-k="anno" data-v="${a}" data-anno="${a}" x="${Math.max(L.x0 - 20, X(i) - passo / 2)}" y="0" width="${passo}" height="${L.base + 30}" fill="transparent" style="cursor:pointer"/>`).join("");
+  svg += anni.map((a, i) => `<circle class="pt" cx="${pts[i][0]}" cy="${pts[i][1]}" r="5.5" tabindex="0" role="button" data-k="anno" data-v="${a}" aria-pressed="${state.anno === a}" aria-label="${a}: ${somma(a)} punti, ${perAnno[a].length} scoperte"/><text class="ax" x="${X(i)}" y="${L.base + 22}" text-anchor="middle">${a}</text>`).join("");
+  [iMax, iUlt].filter((v, j, arr) => arr.indexOf(v) === j).forEach(i => { svg += `<text class="lab" x="${pts[i][0]}" y="${pts[i][1] - 14}" text-anchor="middle">${somma(anni[i]).toLocaleString("it-IT")}</text>`; });
+  const tabella = `<details><summary>Vedi i dati in tabella</summary><table class="tab-mini"><tr><th>Anno</th><th>Punti</th><th>Scoperte</th></tr>${anni.map(a => `<tr><td>${a}</td><td>${somma(a).toLocaleString("it-IT")}</td><td>${perAnno[a].length}</td></tr>`).join("")}</table></details>`;
+  $("charts").innerHTML =
+    `<div class="pannello"><h3>Per ambito</h3><p class="descr">Numero di scoperte e rilevanza media, da 0 a 100.</p>${righe("ambito", amb, amb[0][1], medie)}</div>` +
+    `<div class="pannello"><h3>Per organizzazione</h3><p class="descr">${org.length > 8 ? `Le prime 8 di ${org.length}; un’organizzazione composta conta sotto la prima citata.` : "Un’organizzazione composta conta sotto la prima citata."}</p>${righe("org", org.slice(0, 8), org[0][1])}</div>` +
+    `<div class="pannello largo"><h3>Rilevanza ponderata per anno</h3><p class="descr">Somma dei punteggi di rilevanza delle scoperte di ogni anno: cresce sia con il numero sia con l’importanza delle scoperte.${anni[iUlt] == new Date().getFullYear() ? ` Il ${anni[iUlt]} è ancora in corso.` : ""}</p><svg viewBox="0 0 ${W} 244" id="linea-anni" role="group" aria-label="Linea della rilevanza ponderata per anno, dal ${anni[0]} al ${anni[iUlt]}">${svg}</svg>${tabella}</div>`;
+  const ls = $("linea-anni");
+  ls.querySelectorAll("rect[data-anno]").forEach(r => {
+    r.addEventListener("pointerenter", e => { const a = r.dataset.anno; ls.querySelector(`circle[data-v="${a}"]`).classList.add("su"); mostraTip([`${a}`, `${somma(a).toLocaleString("it-IT")} punti`, `${perAnno[a].length} scoperte`], e.clientX, e.clientY); });
+    r.addEventListener("pointermove", e => { const a = r.dataset.anno; mostraTip([`${a}`, `${somma(a).toLocaleString("it-IT")} punti`, `${perAnno[a].length} scoperte`], e.clientX, e.clientY); });
+    r.addEventListener("pointerleave", () => { ls.querySelectorAll(".pt.su").forEach(c => c.classList.remove("su")); nascondiTip(); });
+  });
+}
+
+function riepilogo() {
+  const nAmb = new Set(items.map(s => s.ambito)).size, nOrg = new Set(items.map(orgDi)).size;
+  $("lead").innerHTML = `<b>${items.length} scoperte</b> in ${nAmb} ambiti, da ${nOrg} organizzazioni, dal 2020 a oggi. Ogni tratto qui sotto è una scoperta: più è alto, più è rilevante.`;
+}
+
+function riempi(sel, etichetta, valori) {
+  sel.innerHTML = `<option value="">${etichetta}</option>` + valori.map(v => `<option>${esc(v)}</option>`).join("");
+}
+
+function voce(s) {
+  const p = punteggio(s), lungo = s.sommario.length > 240, f = famDi[s.id];
+  return `<article class="voce" id="${esc(s.id)}">
+    <div class="voce-meta"><time datetime="${esc(s.data_pubblicazione)}">${esc(fmtData(s.data_pubblicazione))}</time><span>${esc(s.organizzazione)}</span></div>
+    <h3>${esc(s.titolo)}</h3>
+    <p class="sommario${lungo ? " chiuso" : ""}">${esc(s.sommario)}</p>
+    ${lungo ? `<button class="piu" type="button" aria-expanded="false">Leggi tutto</button>` : ""}
+    ${s.tecnologia_ai ? `<p class="tech"><span>Tecnologia:</span> ${esc(s.tecnologia_ai)}</p>` : ""}
+    ${f ? `<p class="modello"><a href="rilasci.html#fam-${esc(f.id)}">Famiglia ${esc(f.nome)} nella pagina dei modelli</a></p>` : ""}
+    <div class="voce-piede">
+      <span class="punteggio" title="Impatto ${s.rilevanza.impatto}/5, validazione ${s.rilevanza.validazione}/5, novità ${s.rilevanza.novita}/5">Rilevanza ${p}<span class="metro" aria-hidden="true"><i style="width:${p}%"></i></span></span>
+      <span class="etich">${esc(s.ambito)}</span>
+      <span class="etich${s.stato_verifica === "verificata" ? " ok" : ""}">${esc(s.stato_verifica)}</span>
+      <span class="collegamenti"><a href="${esc(safeUrl(s.fonte_url))}" rel="noopener">Fonte originale</a>${s.link_paper ? `<a href="${esc(safeUrl(s.link_paper))}" rel="noopener">Paper</a>` : ""}<button class="copia" type="button" data-id="${esc(s.id)}">Copia link</button></span>
+    </div>
+  </article>`;
+}
+
+function lista() {
+  let out = items.filter(passa);
+  $("conta").textContent = `${out.length} di ${items.length} scoperte`;
+  if (state.ord === "asc") out = out.slice().reverse(); // items è già ordinato dal più recente
+  if (state.ord === "rilevanza") out = out.slice().sort((a, b) => punteggio(b) - punteggio(a) || b.data_pubblicazione.localeCompare(a.data_pubblicazione));
+  let html = "";
+  if (!out.length) html = `<p class="vuoto">Nessuna scoperta con questi filtri. Prova a togliere un filtro o premi “Azzera i filtri”.</p>`;
+  else if (state.ord === "rilevanza") html = `<div class="piatto">${out.map(voce).join("")}</div>`;
+  else {
+    const gruppi = [];
+    out.forEach(s => { const a = s.data_pubblicazione.slice(0, 4); if (!gruppi.length || gruppi.at(-1)[0] !== a) gruppi.push([a, []]); gruppi.at(-1)[1].push(s); });
+    html = gruppi.map(([a, v]) => `<section class="annata" aria-label="${a}"><h3 class="anno-tit"><b>${a}</b><span>${v.length} ${v.length === 1 ? "scoperta" : "scoperte"}</span></h3><div>${v.map(voce).join("")}</div></section>`).join("");
+  }
+  $("lista").innerHTML = html;
+  $("org").value = state.org;
+  document.querySelectorAll("#cat button").forEach(b => b.setAttribute("aria-pressed", (b.dataset.v || "") === state.ambito));
+  if (ancora) { // primo disegno con un link a una singola scoperta: non cancellare l'ancora
+    const el = document.getElementById(ancora);
+    if (el) { el.classList.add("evid"); el.scrollIntoView({ block:"center" }); }
+    ancora = null;
+  } else history.replaceState(null, "", state.ambito ? "#" + encodeURIComponent(state.ambito) : location.pathname + location.search);
+  document.querySelectorAll("[data-k]").forEach(b => b.setAttribute("aria-pressed", state[b.dataset.k] === b.dataset.v));
+  spAggiorna();
+}
+
+Promise.all([
+  fetch("data/scoperte.json", { cache:"no-store" }).then(r => r.json()),
+  fetch("data/modelli.json", { cache:"no-store" }).then(r => r.ok ? r.json() : null).catch(() => null)
+]).then(([dati, modelli]) => {
+  items = dati.sort((a, b) => b.data_pubblicazione.localeCompare(a.data_pubblicazione));
+  if (modelli) modelli.famiglie.forEach(f => f.scoperte.forEach(id => { if (!famDi[id]) famDi[id] = f; }));
+  riepilogo(); spettro(); grafici();
+  const perAmb = ordina(conta(items, s => s.ambito));
+  $("cat").innerHTML = [["", "Tutte", items.length], ...perAmb.map(([v, n]) => [v, v, n])]
+    .map(([v, l, n]) => `<button type="button" data-v="${esc(v)}" aria-pressed="false" aria-label="${esc(l)}: ${n} ${n === 1 ? "scoperta" : "scoperte"}"><em>${esc(l)}</em> <span>${n}</span></button>`).join("");
+  riempi($("org"), "Tutte le organizzazioni", [...new Set(items.map(orgDi))].sort((a, b) => a.localeCompare(b, "it")));
+  const h = decodeURIComponent(location.hash.slice(1));
+  if (perAmb.some(([v]) => v === h)) state.ambito = h;
+  lista();
+}).catch(() => { $("lista").textContent = "Impossibile caricare i dati. Apri la pagina da un server locale (python3 -m http.server)."; $("lead").textContent = ""; });
+
+let largh = innerWidth, tRes;
+addEventListener("resize", () => { clearTimeout(tRes); tRes = setTimeout(() => { if (items.length && innerWidth !== largh) { largh = innerWidth; spettro(); grafici(); } }, 150); });
+$("q").addEventListener("input", e => { state.q = e.target.value; lista(); });
+$("ord").addEventListener("change", e => { state.ord = e.target.value; lista(); });
+$("lista").addEventListener("click", e => {
+  const c = e.target.closest(".copia");
+  if (c) {
+    const url = location.origin + location.pathname + "#scoperta=" + encodeURIComponent(c.dataset.id);
+    const fatto = () => { c.textContent = "Link copiato"; setTimeout(() => { c.textContent = "Copia link"; }, 1500); };
+    (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(fatto, () => prompt("Copia il link:", url));
+    return;
+  }
+  const b = e.target.closest(".piu"); if (!b) return;
+  const aperto = b.previousElementSibling.classList.toggle("chiuso") === false;
+  b.setAttribute("aria-expanded", aperto); b.textContent = aperto ? "Mostra meno" : "Leggi tutto";
+});
+$("cat").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  state.ambito = b.dataset.v; lista(); grafici();
+});
+$("org").addEventListener("change", e => { state.org = e.target.value; lista(); grafici(); });
+$("reset").addEventListener("click", () => { state.q = state.ambito = state.org = state.anno = ""; $("q").value = ""; lista(); grafici(); });
+$("charts").addEventListener("click", e => {
+  const b = e.target.closest("[data-k]"); if (!b) return;
+  state[b.dataset.k] = state[b.dataset.k] === b.dataset.v ? "" : b.dataset.v; nascondiTip(); lista(); grafici();
+});
+$("charts").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { const p = e.target.closest(".pt"); if (p) { e.preventDefault(); p.dispatchEvent(new MouseEvent("click", { bubbles:true })); } } });
+</script>
+</body>
+</html>

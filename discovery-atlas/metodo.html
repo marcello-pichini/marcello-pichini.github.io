@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metodo · AI per la scienza</title>
+<meta name="description" content="Come scegliamo e verifichiamo le scoperte tracciate.">
+<meta name="theme-color" content="#12367e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2312367e'/%3E%3Cpath d='M8 24v-6M12 24v-11M16 24v-15M20 24v-8M24 24v-4' stroke='%23f2f6ff' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="stile.css">
+</head>
+<body>
+<header class="testata">
+  <div class="wrap">
+    <a class="marchio" href="index.html" aria-label="AI per la scienza, pagina iniziale">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f2f6ff"/><path d="M8 24v-6M12 24v-11M16 24v-15M20 24v-8M24 24v-4" stroke="#12367e" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <span>AI per la scienza</span>
+    </a>
+    <nav class="menu" aria-label="Sezioni del sito"><a href="index.html">Scoperte</a><a href="rilasci.html">Modelli</a><a href="metodo.html" aria-current="page">Metodo</a></nav>
+  </div>
+</header>
+
+<section class="banda banda-bassa" aria-labelledby="titolo-pagina">
+  <div class="wrap">
+    <h1 id="titolo-pagina">Come scegliamo e verifichiamo le voci</h1>
+    <p class="lead">Il sito traccia risultati scientifici ottenuti con l'AI, dal 2020, a partire dai comunicati ufficiali di chi li ha ottenuti.</p>
+  </div>
+</section>
+
+<main>
+  <div class="wrap">
+    <article class="prosa">
+      <h2>Cosa entra</h2>
+  <ul>
+    <li>Un risultato concreto in un ambito scientifico (biologia, medicina, matematica, clima e altri), annunciato dall'organizzazione che lo ha ottenuto.</li>
+    <li>Una pagina ufficiale con data e cifre: blog di laboratori e aziende (DeepMind, Google Research, Microsoft Research, Meta AI, OpenAI, Anthropic e altri) o comunicati di università e istituti (per esempio MIT).</li>
+    <li>Strumenti e modelli solo se accompagnati da un risultato verificabile (una struttura, un composto, una dimostrazione, un test sul campo).</li>
+  </ul>
+
+  <h2>Cosa non entra</h2>
+  <ul>
+    <li>Lanci di prodotto e confronti su benchmark senza un risultato scientifico. I rilasci dei modelli sono tracciati a parte, nella pagina <a href="rilasci.html">Modelli</a>, e non contano come scoperte.</li>
+    <li>Premi e riconoscimenti (come il Nobel 2024): sono un giudizio sulla scoperta, non la scoperta.</li>
+    <li>Newsletter, aggregatori e articoli di terzi come fonte principale.</li>
+    <li>Annunci senza risultati ancora (finanziamenti, collaborazioni, interviste).</li>
+  </ul>
+
+  <h2>La pagina sui modelli</h2>
+  <p>La pagina <a href="rilasci.html">Modelli</a> risponde a una domanda diversa: quale modello ha prodotto quali scoperte fra quelle in catalogo. Elenca i rilasci dal 2020 dei principali laboratori, più i modelli di qualsiasi data collegati a una scoperta.</p>
+  <p>I dati su nome, laboratorio, data, dominio, parametri e accessibilità dei modelli non sono raccolti da noi: vengono dal database <a href="https://epoch.ai/data/ai-models" rel="noopener">Data on AI models</a> di Epoch AI, ripubblicati con licenza <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. Valgono i limiti che dichiarano loro: l'elenco non è esaustivo e le cifre di calcolo e parametri sono loro stime.</p>
+  <p>Il collegamento fra modello e scoperta invece è nostro, e si basa sul nome: confrontiamo il campo della tecnologia usata e il titolo di ogni scoperta con il nome del modello e della sua famiglia. Vuol dire che un accostamento indica la famiglia giusta, non necessariamente la versione esatta usata nell'esperimento, e che una scoperta ottenuta con un modello che la fonte non nomina non compare. Diverse tecnologie del catalogo, per esempio quelle sviluppate dentro un singolo studio, non hanno nessuna scheda in Epoch AI: in quel caso la famiglia compare lo stesso, senza rilasci collegati.</p>
+
+  <h2>Cosa significa "verificata"</h2>
+  <p>Che la pagina ufficiale è stata letta e che titolo, data, organizzazione e cifre del riassunto corrispondono a quella pagina. Non significa che il risultato sia stato confermato da altri: le cifre sono dichiarate dalle fonti e spesso sono "fino a" o ottenute in condizioni controllate. Dove la fonte indica limiti (solo laboratorio, solo topi, non validato per uso clinico, preprint), il riassunto li riporta.</p>
+  <p>Una voce "da verificare" ha una fonte trovata ma non letta per intero, o con dati in contrasto.</p>
+
+  <h2>Punteggio di rilevanza</h2>
+  <p>Ogni voce ha un punteggio da 0 a 100: la media di tre criteri, ciascuno da 1 a 5, moltiplicata per 20. È una valutazione editoriale, non una misura oggettiva: serve a ordinare e a confrontare le categorie, e il dettaglio dei tre criteri compare passando il mouse sul punteggio.</p>
+  <div class="tabella-scorre"><table>
+    <tr><th>Criterio</th><th>1</th><th>3</th><th>5</th></tr>
+    <tr><td>Impatto</td><td>risultato di nicchia</td><td>utile a un campo o a una popolazione definita</td><td>cambia il modo di lavorare di un intero campo</td></tr>
+    <tr><td>Validazione</td><td>solo computazionale o annuncio</td><td>conferma in laboratorio, sul campo o su casi limitati</td><td>valutazione indipendente, uso ampio o riconoscimento esterno</td></tr>
+    <tr><td>Novità</td><td>miglioramento incrementale</td><td>primo risultato di questo tipo in un ambito</td><td>cambio di paradigma</td></tr>
+  </table></div>
+  <p>La media di una categoria è la media dei punteggi delle sue voci. Con poche voci (una o due) la media dice poco.</p>
+
+  <h2>Come si decide la data</h2>
+  <p>È quella del primo annuncio ufficiale. Se una pubblicazione su rivista arriva dopo, resta nel riassunto. Quando la data riportata da una pagina contraddice il suo testo, si usa quella coerente con i fatti e la contraddizione è annotata (per esempio il post di DeepMind sui primi 350.000 modelli di AlphaFold Database, che indica il 2022 ma parla del 2021).</p>
+
+  <h2>Come sono fatti i dati</h2>
+  <p>Ogni voce è un record in <code>data/scoperte.json</code>:</p>
+  <div class="tabella-scorre"><table>
+    <tr><th>Campo</th><th>Contenuto</th></tr>
+    <tr><td><code>id</code>, <code>titolo</code></td><td>identificativo e titolo</td></tr>
+    <tr><td><code>sommario</code></td><td>2-4 frasi in italiano, con i limiti dichiarati</td></tr>
+    <tr><td><code>ambito</code></td><td>categoria: biologia, medicina, matematica, clima, fisica, chimica, materiali, informatica, scienze umane, multidisciplinare, altro</td></tr>
+    <tr><td><code>organizzazione</code>, <code>tecnologia_ai</code></td><td>chi e con quale sistema</td></tr>
+    <tr><td><code>fonte_url</code>, <code>data_pubblicazione</code></td><td>pagina ufficiale e data dell'annuncio</td></tr>
+    <tr><td><code>stato_verifica</code></td><td>verificata o da verificare</td></tr>
+    <tr><td><code>rilevanza</code></td><td>impatto, validazione e novità, ciascuno da 1 a 5</td></tr>
+  </table></div>
+
+  <h2>Limiti</h2>
+  <ul>
+    <li>La raccolta è manuale e non esaustiva: la selezione dipende dalle fonti lette finora.</li>
+    <li>Le aziende descrivono i propri risultati: il tono può essere promozionale e le valutazioni non sono indipendenti.</li>
+    <li>Un'organizzazione composta (per esempio due laboratori) è contata sotto la prima citata nei grafici.</li>
+  </ul>
+    </article>
+  </div>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <p>Ogni voce rimanda al comunicato originale. Le cifre sono quelle dichiarate dalle fonti, non verificate in modo indipendente.</p>
+    <p><a href="index.html">Torna alle scoperte</a></p>
+  </div>
+</footer>
+</body>
+</html>
