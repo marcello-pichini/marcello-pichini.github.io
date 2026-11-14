@@ -1,0 +1,11 @@
+# Marcello Pichini
+
+> Personal site of Marcello Pichini, Associate Director at SIX Group in Zurich, working on digital assets, crypto indices, AI and financial data products. Contains a short profile, selected projects, a CV and a blog.
+
+## Pages
+- [Home](https://marcello-pichini.github.io/): profile, projects, experience and contact
+- [Blog](https://marcello-pichini.github.io/blog/): articles on AI, digital assets and cryptography
+- [CV (PDF)](https://marcello-pichini.github.io/Marcello-Pichini-CV.pdf)
+
+## Related project
+- [AI Science Tracker](https://marcello-pichini.github.io/ai-science-tracker/): a catalog of scientific discoveries enabled by AI, each linked to its original source; content CC BY 4.0. Machine-readable summary: https://marcello-pichini.github.io/ai-science-tracker/llms.txt
