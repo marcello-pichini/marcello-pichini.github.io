@@ -8,4 +8,4 @@
 - [CV (PDF)](https://marcello-pichini.github.io/Marcello-Pichini-CV.pdf)
 
 ## Related project
-- [AI Science Tracker](https://marcello-pichini.github.io/ai-science-tracker/): a catalog of scientific discoveries enabled by AI, each linked to its original source; content CC BY 4.0. Machine-readable summary: https://marcello-pichini.github.io/ai-science-tracker/llms.txt
+- [AI Science Tracker](https://aisciencetracker.org/): a catalog of scientific discoveries enabled by AI, each linked to its original source; content CC BY 4.0. Machine-readable summary: https://aisciencetracker.org/llms.txt

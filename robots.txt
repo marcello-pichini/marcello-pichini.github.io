@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://marcello-pichini.github.io/sitemap.xml
-Sitemap: https://marcello-pichini.github.io/ai-science-tracker/sitemap.xml
+Sitemap: https://aisciencetracker.org/sitemap.xml
